@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+@using System.Web.Optimization
+@using System
+
+@{
+    DateTime today = DateTime.Today;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="row">
+        <div class="col">
+            <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary">
+                <a class="navbar-brand" href="https://github.com/Roflcoffel/csharp_basics">
+                    <img src="/Content/images/Octocat.png" width="50" height="40" alt="" />
+                </a>
+                <div class="container">
+
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">
+                            <a href="@Url.Action("Index", "Home")" class="nav-link">
+                                Home
+                            </a>
+                        </li>
+ 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Test 1
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item">Test</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>@ViewBag.Title</h3>
+                <p>@ViewBag.Message</p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer class="fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                    <span class="text-muted">@today.ToString("yyyy-MM-dd") - Andreas Johansson</span>
+                </div>
+                <div class="col"></div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
