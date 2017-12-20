@@ -178,6 +178,8 @@
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MovieContext.cs" />
+    <Compile Include="Models\MovieInitializer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderRow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
