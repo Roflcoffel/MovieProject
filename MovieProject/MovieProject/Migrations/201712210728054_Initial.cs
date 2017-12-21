@@ -63,7 +63,7 @@ namespace MovieProject.Migrations
                         Price = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
-            
+
         }
         
         public override void Down()

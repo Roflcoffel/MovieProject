@@ -21,7 +21,6 @@ namespace MovieProject.Models
         public string Password { get; set; }
         [Required]
         public bool Admin { get; set; }
-        //public int CustomerId { get; set; }
 
         public virtual Customer Customer { get; set; }
     }
