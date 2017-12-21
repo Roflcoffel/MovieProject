@@ -2,3 +2,12 @@
     padding-top: 100px;
     font-size: larger;
 }
+
+.CardBorder {
+    margin: 10px;
+
+    border-bottom: 5px solid black;
+    border-left: 5px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+}

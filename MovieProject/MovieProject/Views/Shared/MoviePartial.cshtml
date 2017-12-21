@@ -1,38 +1,16 @@
 ﻿@model IEnumerable<MovieProject.Models.Movie>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Director)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReleaseYear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-        </tr>
-    </thead>
+<div class="row">
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Director)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-        </tr>
+        <div class="CardBorder text-center" style="width: 20rem;">
+            <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.ReleaseYear)</p>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
     }
-</table>
+</div>
