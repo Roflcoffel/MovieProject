@@ -12,6 +12,8 @@ namespace MovieProject.Controllers
         public ActionResult Index()
         {
             return View();
+
+            //TEST
         }
     }
 }
