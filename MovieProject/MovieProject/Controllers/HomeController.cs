@@ -23,7 +23,10 @@ namespace MovieProject.Controllers
         {
             var query = db.Movies.ToList();
 
-       // Create
+            return View(query);
+        }
+       
+        // Create
         public ActionResult CreateMovie()
         {
             return View();
