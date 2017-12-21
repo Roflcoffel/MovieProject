@@ -10,8 +10,10 @@ namespace MovieProject.Controllers
     public class HomeController : Controller
     {
 
-        MovieContext db = new MovieContext();
-        // GET: Home
+        private MovieContext db = new MovieContext();
+
+        // Get Movie
+
         public ActionResult Index()
         {
             return View();
@@ -21,7 +23,27 @@ namespace MovieProject.Controllers
         {
             var query = db.Movies.ToList();
 
-            return View(query);
+       // Create
+        public ActionResult CreateMovie()
+        {
+            return View();
         }
+
+        // Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateMovie([Bind(Include = "Id,Title,Director,ReleaseYear,Price")] Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Movies.Add(movie);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(movie);
+        }
+
+
     }
 }
