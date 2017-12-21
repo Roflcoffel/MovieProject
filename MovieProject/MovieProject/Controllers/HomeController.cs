@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,18 +9,19 @@ namespace MovieProject.Controllers
 {
     public class HomeController : Controller
     {
+
+        MovieContext db = new MovieContext();
         // GET: Home
         public ActionResult Index()
         {
             return View();
-
-            //TEST
         }
 
-
-        public ActionResult Index1()
+        public ActionResult Browse()
         {
-            return View();
+            var query = db.Movies.ToList();
+
+            return View(query);
         }
     }
 }
