@@ -1,6 +1,33 @@
 ﻿@model IEnumerable<MovieProject.Models.Movie>
 
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="form-group col-sm-4 text-center" data-wow-duration="1000ms" data-wow-delay="900ms" style="background-color:aliceblue;">
+            <div class="card form-group">
+                <img class="card-img-top img-responsive" src=".." alt="Card image cap">
+                <div class="card-block form-group" style="padding-bottom:10px;">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title) </h4>
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Director) </h4>
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.ReleaseYear) </h4>
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Price) </h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">AddToCart</a>
+                </div>
+            </div>
+        </div>
+
+    }
+    
+</div>
+
+
 <table class="table table-hover">
+
+
+    
     <thead>
         <tr>
 

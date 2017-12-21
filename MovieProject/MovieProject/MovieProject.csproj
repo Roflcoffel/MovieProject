@@ -183,14 +183,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712210728054_Initial.cs" />
-    <Compile Include="Migrations\201712210728054_Initial.Designer.cs">
-      <DependentUpon>201712210728054_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712211153007_Add.cs" />
-    <Compile Include="Migrations\201712211153007_Add.Designer.cs">
-      <DependentUpon>201712211153007_Add.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -212,6 +204,7 @@
     <Content Include="Views\Movies1\Index.cshtml" />
     <Content Include="Views\Home\Browse.cshtml" />
     <Content Include="Views\Shared\MoviePartial.cshtml" />
+    <Content Include="Views\Home\CreateMovie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -227,14 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712210728054_Initial.resx">
-      <DependentUpon>201712210728054_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712211153007_Add.resx">
-      <DependentUpon>201712211153007_Add.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

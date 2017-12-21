@@ -35,10 +35,21 @@ namespace MovieProject.Controllers
         // Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateMovie([Bind(Include = "Id,Title,Director,ReleaseYear,Price")] Movie movie)
+        public ActionResult CreateMovie(HttpPostedFileBase file, [Bind(Include = "Id,Title,Director,ReleaseYear,Price")] Movie movie)
         {
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    file.SaveAs(HttpContext.Server.MapPath("~/Images/")
+                                                          + file.FileName);
+                    movie.Url = file.FileName;
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -48,5 +59,6 @@ namespace MovieProject.Controllers
         }
 
 
-    }
+
+      
 }
