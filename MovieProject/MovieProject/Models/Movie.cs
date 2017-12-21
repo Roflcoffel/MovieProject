@@ -22,6 +22,9 @@ namespace MovieProject.Models
         [DataType(DataType.Currency)]
         public double Price { get; set; }
 
+        [DataType(DataType.ImageUrl)]
+        public string Url { get; set; }
+
         public virtual ICollection<OrderRow> OrderRows { get; set; }
     }
 }
