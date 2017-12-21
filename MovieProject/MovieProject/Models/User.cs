@@ -9,9 +9,9 @@ namespace MovieProject.Models
 {
     public class User
     {
-        [Key, ForeignKey("Customer")]
         [Required]
-        public int Id { get; set; }
+        [Key, ForeignKey("Customer")]
+        public int CustomerId { get; set; }
         [Required]
         [StringLength(50)]
         public string Username { get; set; }
@@ -19,9 +19,9 @@ namespace MovieProject.Models
         [StringLength(30)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        
-        //public bool Admin { get; set; }
-        public int CustomerId { get; set; }
+        [Required]
+        public bool Admin { get; set; }
+        //public int CustomerId { get; set; }
 
         public virtual Customer Customer { get; set; }
     }
