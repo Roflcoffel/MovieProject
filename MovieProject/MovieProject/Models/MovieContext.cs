@@ -13,7 +13,7 @@ namespace MovieProject.Models
 
         }
 
-        DbSet<Movie> Movies { get; set; }
+        public DbSet<Movie> Movies { get; set; }
         DbSet<Customer> Customers { get; set; }
         DbSet<Order> Orders { get; set; }
         DbSet<OrderRow> OrderRows { get; set; }

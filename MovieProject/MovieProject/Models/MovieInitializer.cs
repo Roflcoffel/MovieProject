@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 namespace MovieProject.Models
 {
@@ -10,14 +11,22 @@ namespace MovieProject.Models
     {
         protected override void Seed(MovieContext context)
         {
-            var customers = new Customer
-            {
-                FirstName = "Jonas",
-                LastName = "Gray",
-                BillingAddress = "23 Green Corner Street",
+            context.Movies.AddOrUpdate(i => i.Title,
+                new Movie
+                {
+                    Title="kfhasd",
+                    
+                
+                }
+                    );
+            //var customers = new Customer
+            //{
+            //    FirstName = "Jonas",
+            //    LastName = "Gray",
+            //    BillingAddress = "23 Green Corner Street",
 
                 
-            };
+            //};
             //base.Seed(context);
         }
     }
