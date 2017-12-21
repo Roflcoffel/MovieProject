@@ -6,14 +6,14 @@ namespace MovieProject.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Initial : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    public sealed partial class MovieUpdate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MovieUpdate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712210728054_Initial"; }
+            get { return "201712211347052_MovieUpdate"; }
         }
         
         string IMigrationMetadata.Source
