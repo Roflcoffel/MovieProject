@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201712210728054_Initial.Designer.cs">
       <DependentUpon>201712210728054_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712211153007_Add.cs" />
+    <Compile Include="Migrations\201712211153007_Add.Designer.cs">
+      <DependentUpon>201712211153007_Add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -226,6 +230,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201712210728054_Initial.resx">
       <DependentUpon>201712210728054_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712211153007_Add.resx">
+      <DependentUpon>201712211153007_Add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
