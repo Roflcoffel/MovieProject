@@ -1,6 +1,7 @@
 ﻿using MovieProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -70,13 +71,14 @@ namespace MovieProject.Controllers
                 
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("OverView");
         }
 
 
         // Delete 
         public ActionResult Delete(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -86,6 +88,7 @@ namespace MovieProject.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(movie);
         }
 
@@ -97,20 +100,92 @@ namespace MovieProject.Controllers
             Movie movie = db.Movies.Find(id);
             db.Movies.Remove(movie);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("OverView");
         }
 
 
-        protected override void Dispose(bool disposing)
+        // View Data to Edit/Details/Delete
+
+        public ActionResult OverView()
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return View(db.Movies.ToList());
+
         }
 
+
+
+
+        // GET: Movies/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditMovie(HttpPostedFileBase file, Movie movie)
+        {
+
+            if (ModelState.IsValid)
+            {
+                //var oldMovie = db.Movies.Find(movie.Id);
+                //db.Movies.Remove(oldMovie);
+
+                //db.Movies.Whe
+                try
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        string filename = Path.GetFileName(file.FileName);
+                        string path = Path.Combine(Server.MapPath("~/Content/Image"), filename);
+                        file.SaveAs(path);
+                        movie.Url = "/Content/Image/" + filename;
+                    }
+                    ViewBag.Message = "File Uploaded";
+
+                }
+                catch
+                {
+                    ViewBag.Message = "File Upload Failed!!";
+                    return View();
+                }
+
+                //oldMovie = movie;
+                db.Movies.Add(movie);
+                db.SaveChanges();
+
+                return View();
+
+            }
+
+            return View();
+        }
+
+
+        //public ActionResult EditMovie(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Movie movie = db.Movies.Find(id);
+        //    if (movie == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(movie);
+        //}
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditMovie( Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(movie).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("OverView");
+            }
+            return View(movie);
+        }
 
     }
-      
+
 }
+
