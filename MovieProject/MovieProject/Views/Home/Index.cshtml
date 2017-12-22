@@ -1,10 +1,20 @@
-﻿
+﻿@model MovieProject.Models.FrontPageView
+
 @{
     ViewBag.Title = "Index";
 }
 
-<div class="container">
-    <h2>Index</h2>
-</div>
-
+<table>
+    @foreach (var item in Model.MostPopular)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(movie => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(movie => item.Director)
+            </td>
+        </tr>
+    }
+</table>
 
