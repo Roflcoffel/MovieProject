@@ -27,6 +27,21 @@ namespace MovieProject.Migrations
                 new Customer { FirstName = "Jane", LastName = "Harolds", BillingAddress = "10 West Street", BillingZip = "48213", BillingCity = "London", DeliveryAddress = "10 West Street", DeliveryZip = "48213", DeliveryCity = "London", EmailAddress = "Jane_h77@gmail.com", PhoneNo = "0701245512" },
                 new Customer { FirstName = "Peter", LastName = "Birro", BillingAddress = "12 Fox Street", BillingZip = "45681", BillingCity = "New York", DeliveryAddress = "89 Moose Plaza", DeliveryZip = "45821", DeliveryCity = "Seattle", EmailAddress = "peter_the_great@hotmail.com", PhoneNo = "0739484322" }
             );
+
+            context.Orders.AddOrUpdate(o => o.Id,
+                new Order { CustomerId = 1, OrderDate = new DateTime(2015,1,2) },
+                new Order { CustomerId = 2, OrderDate = new DateTime(2013,5,5) },
+                new Order { CustomerId = 3, OrderDate = new DateTime(2011,9,2) }
+            );
+
+            context.OrderRows.AddOrUpdate(o => o.Id,
+                new OrderRow { MovieId = 1, OrderId = 11, Price = 300},
+                new OrderRow { MovieId = 2, OrderId = 12, Price = 100},
+                new OrderRow { MovieId = 2, OrderId = 13, Price = 400},
+                new OrderRow { MovieId = 1, OrderId = 12, Price = 300 },
+                new OrderRow { MovieId = 2, OrderId = 12, Price = 100 },
+                new OrderRow { MovieId = 3, OrderId = 13, Price = 400 }
+            );
         }
     }
 }
