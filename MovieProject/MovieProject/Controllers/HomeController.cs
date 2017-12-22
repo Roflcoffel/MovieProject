@@ -45,7 +45,7 @@ namespace MovieProject.Controllers
                     if (file.ContentLength > 0)
                     {
                         string filename = Path.GetFileName(file.FileName);
-                        string path = Path.Combine(Server.MapPath("~/Content/Images"), filename);
+                        string path = Path.Combine(Server.MapPath("~/Content/Image"), filename);
                         file.SaveAs(path);
                     }
                     ViewBag.Message = "File Uploaded";
