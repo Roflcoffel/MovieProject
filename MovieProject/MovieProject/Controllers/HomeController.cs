@@ -15,9 +15,13 @@ namespace MovieProject.Controllers
 
         // Get Movie
 
-        public ActionResult Index()
+        public ActionResult Index(FrontPageView frontPage)
         {
-            return View();
+            //frontPage.MostPopular =
+            frontPage.Newest = db.Movies.OrderBy(m => m.ReleaseYear).Take(5).ToList();
+            frontPage.Oldest = db.Movies.OrderByDescending(m => m.ReleaseYear).Take(5).ToList();
+            frontPage.Cheapest = db.Movies.OrderByDescending(m => m.Price).Take(5).ToList();
+            return View(frontPage);
         }
 
         public ActionResult Browse()
