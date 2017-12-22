@@ -12,5 +12,6 @@ namespace MovieProject.Models
         public List<Movie> Newest { get; set; }
         public List<Movie> Oldest { get; set; }
         public List<Movie> Cheapest { get; set; }
+        public Customer BestCustomer { get; set; }
     }
 }
