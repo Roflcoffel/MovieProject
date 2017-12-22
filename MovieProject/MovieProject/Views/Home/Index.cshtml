@@ -17,4 +17,17 @@
         </tr>
     }
 </table>
+<table>
+    @foreach (var item in Model.Cheapest)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(movie => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(movie => item.Director)
+            </td>
+        </tr>
+    }
+</table>
 
