@@ -183,6 +183,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,8 +191,17 @@
     <Compile Include="Migrations\201712220811589_newSeed.Designer.cs">
       <DependentUpon>201712220811589_newSeed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712221258465_update.cs" />
+    <Compile Include="Migrations\201712221258465_update.Designer.cs">
+      <DependentUpon>201712221258465_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712221349371_userUpdate.cs" />
+    <Compile Include="Migrations\201712221349371_userUpdate.Designer.cs">
+      <DependentUpon>201712221349371_userUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\FrontPageView.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieContext.cs" />
@@ -205,15 +215,12 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
-    <Content Include="Views\Movies1\Create.cshtml" />
-    <Content Include="Views\Movies1\Delete.cshtml" />
-    <Content Include="Views\Movies1\Details.cshtml" />
-    <Content Include="Views\Movies1\Edit.cshtml" />
-    <Content Include="Views\Movies1\Index.cshtml" />
     <Content Include="Views\Home\Browse.cshtml" />
     <Content Include="Views\Shared\MoviePartial.cshtml" />
     <Content Include="Views\Home\CreateMovie.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Registration.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -233,6 +240,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201712220811589_newSeed.resx">
       <DependentUpon>201712220811589_newSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221258465_update.resx">
+      <DependentUpon>201712221258465_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221349371_userUpdate.resx">
+      <DependentUpon>201712221349371_userUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
