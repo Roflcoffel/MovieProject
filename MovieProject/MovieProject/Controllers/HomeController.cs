@@ -17,12 +17,36 @@ namespace MovieProject.Controllers
 
         // Get Movie
 
-        public ActionResult Index(FrontPageView frontPage)
+        public ActionResult Index()
         {
-            //frontPage.MostPopular =
+            FrontPageView frontPage = new FrontPageView();
+
+            frontPage.MostPopular = (from m in db.Movies
+                                    join orows in db.OrderRows on m.Id equals orows.MovieId
+                                    orderby db.OrderRows.Count() descending
+                                    select m).Distinct().Take(5).ToList();
+
             frontPage.Newest = db.Movies.OrderBy(m => m.ReleaseYear).Take(5).ToList();
             frontPage.Oldest = db.Movies.OrderByDescending(m => m.ReleaseYear).Take(5).ToList();
             frontPage.Cheapest = db.Movies.OrderByDescending(m => m.Price).Take(5).ToList();
+
+            double maxOrderPrice = 0;
+            foreach (var order in db.Orders)
+            {
+                double tempPrice = 0;
+                foreach (var orderRow in db.OrderRows)
+                {
+                    if (orderRow.OrderId == order.Id)
+                    {
+                        tempPrice += orderRow.Price;
+                    }
+                }
+                if (tempPrice >= maxOrderPrice)
+                {
+                    maxOrderPrice = tempPrice;
+                    frontPage.BestCustomer = db.Customers.Find(order.CustomerId);
+                }
+            }
             return View(frontPage);
         }
 
