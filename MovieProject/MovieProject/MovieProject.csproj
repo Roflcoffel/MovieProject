@@ -187,13 +187,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712221017041_Initial.cs" />
-    <Compile Include="Migrations\201712221017041_Initial.Designer.cs">
-      <DependentUpon>201712221017041_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712270741252_added.cs" />
-    <Compile Include="Migrations\201712270741252_added.Designer.cs">
-      <DependentUpon>201712270741252_added.cs</DependentUpon>
+    <Compile Include="Migrations\201712271013390_initial.cs" />
+    <Compile Include="Migrations\201712271013390_initial.Designer.cs">
+      <DependentUpon>201712271013390_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -217,6 +213,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
+    <Content Include="Views\Home\EditMovie.cshtml" />
+    <Content Include="Views\Home\OverView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -234,11 +233,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712221017041_Initial.resx">
-      <DependentUpon>201712221017041_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712270741252_added.resx">
-      <DependentUpon>201712270741252_added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712271013390_initial.resx">
+      <DependentUpon>201712271013390_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -20,25 +20,26 @@ namespace MovieProject.Controllers
         {
             FrontPageView frontPage = new FrontPageView();
 
-            List<Movie> tempList = db.Movies.ToList();
-            for (int i = 0; i < 5; i++)
-            {
-                int tempBiggest = 0;
-                int tempId = 0;
-                foreach (var movie in tempList)
-                {
-                    int temp = db.OrderRows.Count(r => r.MovieId == movie.Id);
-                    if (temp > tempBiggest)
-                    {
-                        tempId = movie.Id;
-                        tempBiggest = temp;
-                    }
-                }
-                tempList.Remove(db.Movies.Find(tempId));
-                Movie tempMovie = db.Movies.Find(tempId);
-                frontPage.MostPopular.Add(tempMovie);
-            }
+            //List<Movie> tempList = db.Movies.ToList();
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    int tempBiggest = 0;
+            //    int tempId = 0;
+            //    foreach (var movie in tempList)
+            //    {
+            //        int temp = db.OrderRows.Count(r => r.MovieId == movie.Id);
+            //        if (temp > tempBiggest)
+            //        {
+            //            tempId = movie.Id;
+            //            tempBiggest = temp;
+            //        }
+            //    }
+            //    tempList.Remove(db.Movies.Find(tempId));
+            //    Movie tempMovie = db.Movies.Find(tempId);
+            //    frontPage.MostPopular.Add(tempMovie);
+            //}
 
+            frontPage.MostPopular=db.Movies.OrderByDescending
             frontPage.Newest = db.Movies.OrderByDescending(m => m.ReleaseYear).Take(5).ToList();
             frontPage.Oldest = db.Movies.OrderBy(m => m.ReleaseYear).Take(5).ToList();
             frontPage.Cheapest = db.Movies.OrderBy(m => m.Price).Take(5).ToList();
