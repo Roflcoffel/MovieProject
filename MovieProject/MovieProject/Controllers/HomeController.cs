@@ -1,7 +1,6 @@
 ﻿using MovieProject.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -21,17 +20,19 @@ namespace MovieProject.Controllers
         {
             FrontPageView frontPage = new FrontPageView();
 
+            //Probably need to make a new code for finding most popular in order to sort them
             frontPage.MostPopular = (from m in db.Movies
-                                    join orows in db.OrderRows on m.Id equals orows.MovieId
-                                    orderby db.OrderRows.Count() descending
-                                    select m).Distinct().Take(5).ToList();
+                                     join orows in db.OrderRows on m.Id equals orows.MovieId
+                                     orderby db.OrderRows.Count() descending
+                                     select m).Distinct().Take(5).ToList();
 
-            frontPage.Newest = db.Movies.OrderBy(m => m.ReleaseYear).Take(5).ToList();
-            frontPage.Oldest = db.Movies.OrderByDescending(m => m.ReleaseYear).Take(5).ToList();
-            frontPage.Cheapest = db.Movies.OrderByDescending(m => m.Price).Take(5).ToList();
+            frontPage.Newest = db.Movies.OrderByDescending(m => m.ReleaseYear).Take(5).ToList();
+            frontPage.Oldest = db.Movies.OrderBy(m => m.ReleaseYear).Take(5).ToList();
+            frontPage.Cheapest = db.Movies.OrderBy(m => m.Price).Take(5).ToList();
 
             double maxOrderPrice = 0;
-            foreach (var order in db.Orders)
+            List<Order> orders = db.Orders.ToList();
+            foreach (var order in orders)
             {
                 double tempPrice = 0;
                 foreach (var orderRow in db.OrderRows)
@@ -95,14 +96,13 @@ namespace MovieProject.Controllers
                 
             }
 
-            return RedirectToAction("OverView");
+            return RedirectToAction("Index");
         }
 
 
         // Delete 
         public ActionResult Delete(int? id)
         {
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,7 +112,6 @@ namespace MovieProject.Controllers
             {
                 return HttpNotFound();
             }
-            
             return View(movie);
         }
 
@@ -124,92 +123,20 @@ namespace MovieProject.Controllers
             Movie movie = db.Movies.Find(id);
             db.Movies.Remove(movie);
             db.SaveChanges();
-            return RedirectToAction("OverView");
+            return RedirectToAction("Index");
         }
 
 
-        // View Data to Edit/Details/Delete
-
-        public ActionResult OverView()
+        protected override void Dispose(bool disposing)
         {
-            return View(db.Movies.ToList());
-
-        }
-
-
-
-
-        // GET: Movies/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditMovie(HttpPostedFileBase file, Movie movie)
-        {
-
-            if (ModelState.IsValid)
+            if (disposing)
             {
-                //var oldMovie = db.Movies.Find(movie.Id);
-                //db.Movies.Remove(oldMovie);
-
-                //db.Movies.Whe
-                try
-                {
-                    if (file.ContentLength > 0)
-                    {
-                        string filename = Path.GetFileName(file.FileName);
-                        string path = Path.Combine(Server.MapPath("~/Content/Image"), filename);
-                        file.SaveAs(path);
-                        movie.Url = "/Content/Image/" + filename;
-                    }
-                    ViewBag.Message = "File Uploaded";
-
-                }
-                catch
-                {
-                    ViewBag.Message = "File Upload Failed!!";
-                    return View();
-                }
-
-                //oldMovie = movie;
-                db.Movies.Add(movie);
-                db.SaveChanges();
-
-                return View();
-
+                db.Dispose();
             }
-
-            return View();
+            base.Dispose(disposing);
         }
 
-
-        //public ActionResult EditMovie(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Movie movie = db.Movies.Find(id);
-        //    if (movie == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(movie);
-        //}
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditMovie( Movie movie)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(movie).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("OverView");
-            }
-            return View(movie);
-        }
 
     }
-
+      
 }
-
