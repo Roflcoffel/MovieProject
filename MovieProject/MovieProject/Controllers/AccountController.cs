@@ -13,8 +13,7 @@ namespace MovieProject.Controllers
     public class AccountController : Controller
     {
         private MovieContext db = new MovieContext();
-        
-        //Account Page
+
         public ActionResult Index()
         {
             var user = (User)Session["User"];
@@ -29,11 +28,16 @@ namespace MovieProject.Controllers
             }
         }
 
-        public ActionResult Logout()
+        public void Logout()
         {
             Session.Clear();
             ViewBag.Message = "You Logged out";
-            return RedirectToAction("Login", "Account");
+            RedirectToAction("Login", "Account");
+        }
+
+        public ActionResult ShowOrders()
+        {
+            return View();
         }
 
         public ActionResult Login()
@@ -122,7 +126,7 @@ namespace MovieProject.Controllers
 
                     return View();
                 }
-                ViewBag.ErrorMessage = "User Allredy Exixts!!!!!!!!!!";
+                ViewBag.ErrorMessage = "User Allredy Exixts!";
                 return View();
                 
             }

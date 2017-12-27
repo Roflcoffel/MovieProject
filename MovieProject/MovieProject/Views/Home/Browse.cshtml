@@ -1,10 +1,7 @@
-﻿@model IEnumerable<MovieProject.Models.Movie>
+﻿@model List<MovieProject.Models.Movie>
 
 @{
     ViewBag.Title = "Browse";
 }
 
-@Html.Partial("MoviePartial", Model)
-
-
-    
+@Html.Partial("MoviePartial", Model);

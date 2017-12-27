@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<MovieProject.Models.Movie>
 
-<!--Card View-->
+@{
+    ViewBag.Title = "Cart";
+}
+
 <div class="row">
     @foreach (var item in Model)
     {
@@ -10,8 +13,9 @@
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
                 <p class="card-text">@Html.DisplayFor(modelItem => item.ReleaseYear)</p>
                 <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
-                <a href="@Url.Action("AddToCart", "Cart", new {id = item.Id})" class="btn btn-primary">Add To Cart</a>
+                <a href="@Url.Action("RemoveFromCart", "Cart", new {id = item.Id})" class="btn btn-primary">Remove</a>
             </div>
         </div>
     }
 </div>
+

@@ -76,7 +76,26 @@ namespace MovieProject.Controllers
         // Create
         public ActionResult CreateMovie()
         {
-            return View();
+            var user = (User)Session["User"];
+
+            if(user != null)
+            {
+                if (user.isAdmin)
+                {
+                    return View();
+                }
+                else
+                {
+                    ViewBag.Message = "Permission Denied";
+                    return RedirectToAction("Index", "Home");
+                }
+            } 
+            else
+            {
+                ViewBag.Message = "Not Logged in";
+                return RedirectToAction("Login", "Account");
+            }
+            
         }
 
         // Create
