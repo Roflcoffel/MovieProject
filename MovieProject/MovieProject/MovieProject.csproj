@@ -191,13 +191,9 @@
     <Compile Include="Migrations\201712221017041_Initial.Designer.cs">
       <DependentUpon>201712221017041_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712221258465_update.cs" />
-    <Compile Include="Migrations\201712221258465_update.Designer.cs">
-      <DependentUpon>201712221258465_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712221349371_userUpdate.cs" />
-    <Compile Include="Migrations\201712221349371_userUpdate.Designer.cs">
-      <DependentUpon>201712221349371_userUpdate.cs</DependentUpon>
+    <Compile Include="Migrations\201712270741252_added.cs" />
+    <Compile Include="Migrations\201712270741252_added.Designer.cs">
+      <DependentUpon>201712270741252_added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -241,11 +237,8 @@
     <EmbeddedResource Include="Migrations\201712221017041_Initial.resx">
       <DependentUpon>201712221017041_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712221258465_update.resx">
-      <DependentUpon>201712221258465_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712221349371_userUpdate.resx">
-      <DependentUpon>201712221349371_userUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712270741252_added.resx">
+      <DependentUpon>201712270741252_added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

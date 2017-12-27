@@ -7,7 +7,18 @@ namespace MovieProject.Models
 {
     public class FrontPageView
     {
-        public List<Movie> MostPopular { get; set; }
+        private List<Movie> mostPopular = new List<Movie>();
+        public List<Movie> MostPopular
+        {
+            get
+            {
+                return mostPopular;
+            }
+            set
+            {
+                mostPopular = value;
+            }
+        }
         public List<Movie> Newest { get; set; }
         public List<Movie> Oldest { get; set; }
         public List<Movie> Cheapest { get; set; }
