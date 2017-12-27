@@ -18,7 +18,7 @@ namespace MovieProject.Models {
 
             for (var i = 0; i <= length - 1; i++)
             {
-                chars[i] = allowedChars[Convert.ToInt32((allowedChars.Length) * rnd.NextDouble())];
+                chars[i] = allowedChars[Convert.ToInt32((allowedChars.Length-1) * rnd.NextDouble())];
             }
 
             return new string(chars);
