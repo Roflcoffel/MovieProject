@@ -1,0 +1,82 @@
+﻿@model MovieProject.Models.Customer
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillingAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillingZip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillingCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryZip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(item => item.User.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.BillingAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.BillingZip)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.BillingCity)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.DeliveryAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.DeliveryZip)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.DeliveryCity)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.PhoneNo)
+        </td>
+    </tr>
+    
+
+</table>

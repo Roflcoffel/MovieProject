@@ -20,11 +20,7 @@ namespace MovieProject.Controllers
         {
             FrontPageView frontPage = new FrontPageView();
 
-            //Probably need to make a new code for finding most popular in order to sort them
-            frontPage.MostPopular = (from m in db.Movies
-                                     join orows in db.OrderRows on m.Id equals orows.MovieId
-                                     orderby db.OrderRows.Count() descending
-                                     select m).Distinct().Take(5).ToList();
+            //frontPage.MostPopular = db.Movies.OrderByDescending(m => m.OrderRows.Count()).Take(5).ToList();
 
             frontPage.Newest = db.Movies.OrderByDescending(m => m.ReleaseYear).Take(5).ToList();
             frontPage.Oldest = db.Movies.OrderBy(m => m.ReleaseYear).Take(5).ToList();

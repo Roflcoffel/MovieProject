@@ -187,10 +187,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712221017041_Initial.cs" />
-    <Compile Include="Migrations\201712221017041_Initial.Designer.cs">
-      <DependentUpon>201712221017041_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201712221258465_update.cs" />
     <Compile Include="Migrations\201712221258465_update.Designer.cs">
       <DependentUpon>201712221258465_update.cs</DependentUpon>
@@ -221,6 +217,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -238,9 +235,6 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712221017041_Initial.resx">
-      <DependentUpon>201712221017041_Initial.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712221258465_update.resx">
       <DependentUpon>201712221258465_update.cs</DependentUpon>
     </EmbeddedResource>
