@@ -3,11 +3,12 @@
 @{
     ViewBag.Title = "Home";
 }
+<br />
 <h3>Most Popular Movies</h3>
-<div class="row">
+<div class="row" style="background-color: darkslategray">
     @foreach (var item in Model.MostPopular)
     {
-        <div class="CardBorder text-center" style="width: 10rem;">
+        <div class="CardBorder text-center" style="width: 13rem; background-color:white">
             <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
@@ -17,10 +18,10 @@
 </div>
 <br />
 <h3>Newest Movies</h3>
-<div class="row">
+<div class="row" style="background-color: darkslategray">
     @foreach (var item in Model.Newest)
     {
-        <div class="CardBorder text-center" style="width: 10rem;">
+        <div class="CardBorder text-center" style="width: 13rem; background-color:white">
             <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
@@ -30,10 +31,10 @@
 </div>
 <br />
 <h3>Cheapest Movies</h3>
-<div class="row">
+<div class="row" style="background-color: darkslategray">
     @foreach (var item in Model.Cheapest)
     {
-        <div class="CardBorder text-center" style="width: 10rem;">
+        <div class="CardBorder text-center" style="width: 13rem; background-color:white">
             <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
@@ -43,10 +44,10 @@
 </div>
 <br />
 <h3>Oldest Movies</h3>
-<div class="row">
+<div class="row" style="background-color: darkslategray">
     @foreach (var item in Model.Oldest)
     {
-        <div class="CardBorder text-center" style="width: 10rem;">
+        <div class="CardBorder text-center" style="width: 13rem; background-color:white">
             <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
@@ -54,6 +55,7 @@
         </div>
     }
 </div>
+<br />
 <div>
     <h3>Biggest Spender: @Html.DisplayFor(model => Model.BestCustomer.FirstName) @Html.DisplayFor(model => Model.BestCustomer.LastName)</h3>
 </div>
