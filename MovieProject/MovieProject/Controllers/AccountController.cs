@@ -23,7 +23,7 @@ namespace MovieProject.Controllers
             }
             else
             {
-                ViewBag.Message = "Session Expired";
+                TempData["Message"] = "Session Expired";
                 return RedirectToAction("Login", "Account");
             }
         }
@@ -31,7 +31,7 @@ namespace MovieProject.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            ViewBag.Message = "You Logged out";
+            TempData["Message"] = "You Logged out";
             return RedirectToAction("Index", "Home");
         }
 
@@ -42,6 +42,8 @@ namespace MovieProject.Controllers
 
         public ActionResult Login()
         {
+            ViewBag.Message = TempData["Message"];
+
             return View();
         }
 

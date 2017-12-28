@@ -20,24 +20,7 @@ namespace MovieProject.Controllers
         {
             FrontPageView frontPage = new FrontPageView();
 
-            //List<Movie> tempList = db.Movies.ToList();
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    int tempBiggest = 0;
-            //    int tempId = 0;
-            //    foreach (var movie in tempList)
-            //    {
-            //        int temp = db.OrderRows.Count(r => r.MovieId == movie.Id);
-            //        if (temp > tempBiggest)
-            //        {
-            //            tempId = movie.Id;
-            //            tempBiggest = temp;
-            //        }
-            //    }
-            //    tempList.Remove(db.Movies.Find(tempId));
-            //    Movie tempMovie = db.Movies.Find(tempId);
-            //    frontPage.MostPopular.Add(tempMovie);
-            //}
+            ViewBag.Message = TempData["Message"];
 
             frontPage.MostPopular = db.Movies.OrderByDescending(m => m.OrderRows.Count()).Take(5).ToList();
 
@@ -68,6 +51,8 @@ namespace MovieProject.Controllers
 
         public ActionResult Browse()
         {
+            ViewBag.Message = TempData["Message"];
+
             var query = db.Movies.ToList();
 
             return View(query);
@@ -86,13 +71,13 @@ namespace MovieProject.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = "Permission Denied";
+                    TempData["Message"] = "Permission Denied";
                     return RedirectToAction("Index", "Home");
                 }
             } 
             else
             {
-                ViewBag.Message = "Not Logged in";
+                TempData["Message"] = "Not Logged in";
                 return RedirectToAction("Login", "Account");
             }
             

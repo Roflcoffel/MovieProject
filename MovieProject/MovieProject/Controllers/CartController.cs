@@ -15,6 +15,9 @@ namespace MovieProject.Controllers
         // GET: Shopping Cart
         public ActionResult Index()
         {
+            //Cross Controller Messages
+            ViewBag.Message = TempData["CartMessage"];
+
             List<Movie> shoppingCart = (List<Movie>)Session["Cart"];
 
             if (shoppingCart == null)
@@ -29,7 +32,7 @@ namespace MovieProject.Controllers
             }
             else
             {
-                ViewBag.Message = "Cart Expired";
+                TempData["CartMessage"] = "Cart Expired";
                 return RedirectToAction("Index", "Home");
             }
            
@@ -48,13 +51,13 @@ namespace MovieProject.Controllers
             var movie = db.Movies.Find(id);
             if (movie != null)
             {
-                ViewBag.Message = "Movie Added";
+                TempData["CartMessage"] = "Movie Added";
                 shoppingCart.Add(movie);
                 Session["Cart"] = shoppingCart;
             }
             else
             {
-                ViewBag.Message = "Movie Doesnt Exist";
+                TempData["CartMessage"] = "Movie Doesnt Exist";
             }
             
 
@@ -73,18 +76,43 @@ namespace MovieProject.Controllers
             var movie = shoppingCart.Where(m => m.Id == id).Single() ;
             if (movie != null)
             {
-                Debug.WriteLine("Movie Removed");
-                ViewBag.Message = "Movie Removed";
+                TempData["CartMessage"] = "Movie Removed";
                 shoppingCart.Remove(movie);
                 Session["Cart"] = shoppingCart;
             }
             else
             {
-                ViewBag.Message = "Movie Doesnt Exist";
+                TempData["CartMessage"] = "Movie Doesnt Exist";
                 RedirectToAction("Browse", "Home");
             }
 
             return RedirectToAction("Index", "Cart");
+        }
+
+        public ActionResult checkOut()
+        {
+            List<Movie> shoppingCart = (List<Movie>)Session["Cart"];
+
+            if(shoppingCart == null)
+            {
+                TempData["Message"] = "Cart Empty";
+                return RedirectToAction("Browse", "Home");
+            }
+
+            var user = (User)Session["User"];
+            if(user != null)
+            {
+                return View(user);
+
+            }
+
+            return View();  
+        }
+
+        [HttpPost]
+        public ActionResult checkOut(Customer customer)
+        {
+            return View();
         }
     }
 }
