@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MovieProject.Models.Movie>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateMovie")
 </p>
 <table class="table">
     <tr>
@@ -38,7 +38,6 @@
         
         <td>
             @Html.ActionLink("Edit", "EditMovie", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

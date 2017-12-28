@@ -58,6 +58,12 @@ namespace MovieProject.Controllers
             return View(query);
         }
 
+        public ActionResult OverView()
+        {
+            List<Movie> movies = db.Movies.ToList();
+            return View(movies);
+        }
+
         // Create
         public ActionResult CreateMovie()
         {
@@ -118,6 +124,48 @@ namespace MovieProject.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult EditMovie(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Movie movie = db.Movies.Find(id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditMovie(int id, Movie movie, HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string filename = Path.GetFileName(file.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Content/Image"), filename);
+                    file.SaveAs(path);
+                    db.Movies.Find(id).Url = "/Content/Image/" + filename;
+                }
+                ViewBag.Message = "File Uploaded";
+
+            }
+            catch
+            {
+                ViewBag.Message = "File Upload Failed!!";
+                return View();
+            }
+            db.Movies.Find(id).Title = movie.Title;
+            db.Movies.Find(id).Director = movie.Director;
+            db.Movies.Find(id).ReleaseYear = movie.ReleaseYear;
+            db.Movies.Find(id).Price = movie.Price;
+            db.SaveChanges();
+            return RedirectToAction("OverView");
+        }
 
         // Delete 
         public ActionResult Delete(int? id)
@@ -142,7 +190,7 @@ namespace MovieProject.Controllers
             Movie movie = db.Movies.Find(id);
             db.Movies.Remove(movie);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("OverView");
         }
 
 

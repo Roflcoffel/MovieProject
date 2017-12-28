@@ -39,9 +39,9 @@
                         {
                             if (((User)Session["User"]).isAdmin)
                             {
-                                <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "CreateMovie" ? "active" : "")">
-                                    <a href="@Url.Action("CreateMovie", "Home")" class="nav-link">
-                                        Add Movie
+                                <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "OverView" ? "active" : "")">
+                                    <a href="@Url.Action("OverView", "Home")" class="nav-link">
+                                        Manage Movies
                                     </a>
                                 </li>
                             }
