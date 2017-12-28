@@ -116,6 +116,10 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     
-    
+    <script>
+            $("#delivery").click(function () {
+                $("#hiddenDelivery").toggle(!this.checked);
+            })
+    </script>
 </body>
 </html>
