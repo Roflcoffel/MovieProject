@@ -2,6 +2,7 @@
 
 @using System.Web.Optimization
 @using System
+@using MovieProject.Models
 
 @{
     DateTime today = DateTime.Today;
@@ -33,7 +34,21 @@
                                 Browse
                             </a>
                         </li>
- 
+
+                        @if (Session["User"] != null)
+                        {
+                            if (((User)Session["User"]).isAdmin)
+                            {
+                                <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "CreateMovie" ? "active" : "")">
+                                    <a href="@Url.Action("CreateMovie", "Home")" class="nav-link">
+                                        Add Movie
+                                    </a>
+                                </li>
+                            }
+                        }
+
+
+
                         @*<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                 Test 1
@@ -67,7 +82,7 @@
                         }
                         else
                         {
-                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
+                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "active" : "")">
                                 <a href="@Url.Action("Index", "Account")" class="nav-link">
                                     Profile
                                 </a>
