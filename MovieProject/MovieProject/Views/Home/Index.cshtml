@@ -8,7 +8,7 @@
 <div class="row" style="background-color: darkslategray">
     @foreach (var item in Model.MostPopular)
     {
-        <div class="CardBorder text-center" style="width: 13rem; background-color:white">
+        <div class="CardBorder text-center" style="background-color:white">
             <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
@@ -21,7 +21,7 @@
 <div class="row" style="background-color: darkslategray">
     @foreach (var item in Model.Newest)
     {
-        <div class="CardBorder text-center" style="width: 13rem; background-color:white">
+        <div class="CardBorder text-center" style="background-color:white">
             <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
@@ -34,7 +34,7 @@
 <div class="row" style="background-color: darkslategray">
     @foreach (var item in Model.Cheapest)
     {
-        <div class="CardBorder text-center" style="width: 13rem; background-color:white">
+        <div class="CardBorder text-center" style="background-color:white">
             <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
@@ -47,7 +47,7 @@
 <div class="row" style="background-color: darkslategray">
     @foreach (var item in Model.Oldest)
     {
-        <div class="CardBorder text-center" style="width: 13rem; background-color:white">
+        <div class="CardBorder text-center" style="background-color:white">
             <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>

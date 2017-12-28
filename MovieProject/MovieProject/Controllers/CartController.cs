@@ -16,7 +16,7 @@ namespace MovieProject.Controllers
         public ActionResult Index()
         {
             //Cross Controller Messages
-            ViewBag.Message = TempData["CartMessage"];
+            ViewBag.Message = TempData["Message"];
 
             List<Movie> shoppingCart = (List<Movie>)Session["Cart"];
 
@@ -32,7 +32,7 @@ namespace MovieProject.Controllers
             }
             else
             {
-                TempData["CartMessage"] = "Cart Expired";
+                TempData["Message"] = "Cart Expired";
                 return RedirectToAction("Index", "Home");
             }
            
@@ -51,13 +51,13 @@ namespace MovieProject.Controllers
             var movie = db.Movies.Find(id);
             if (movie != null)
             {
-                TempData["CartMessage"] = "Movie Added";
+                TempData["Message"] = "Movie Added";
                 shoppingCart.Add(movie);
                 Session["Cart"] = shoppingCart;
             }
             else
             {
-                TempData["CartMessage"] = "Movie Doesnt Exist";
+                TempData["Message"] = "Movie Doesnt Exist";
             }
             
 
@@ -76,13 +76,13 @@ namespace MovieProject.Controllers
             var movie = shoppingCart.Where(m => m.Id == id).Single() ;
             if (movie != null)
             {
-                TempData["CartMessage"] = "Movie Removed";
+                TempData["Message"] = "Movie Removed";
                 shoppingCart.Remove(movie);
                 Session["Cart"] = shoppingCart;
             }
             else
             {
-                TempData["CartMessage"] = "Movie Doesnt Exist";
+                TempData["Message"] = "Movie Doesnt Exist";
                 RedirectToAction("Browse", "Home");
             }
 
