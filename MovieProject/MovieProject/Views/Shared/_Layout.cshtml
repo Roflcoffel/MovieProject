@@ -7,7 +7,7 @@
     DateTime today = DateTime.Today;
 }
 
-<html>
+<html style="min-height: 100%; position: relative">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -61,17 +61,10 @@
         @RenderBody()
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col"></div>
-                <div class="col">
-                    <span class="text-muted">@today.ToString("yyyy-MM-dd") - Andreas Johansson</span>
-                </div>
-                <div class="col"></div>
-            </div>
+    <footer style="position: absolute; bottom: 0; width: 100%; text-align: center">
 
-        </div>
+                    <span class="text-muted">@today.ToString("yyyy-MM-dd") - Andreas Johansson</span>
+
     </footer>
 
 
