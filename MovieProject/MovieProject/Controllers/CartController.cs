@@ -89,7 +89,7 @@ namespace MovieProject.Controllers
             return RedirectToAction("Index", "Cart");
         }
 
-        public ActionResult checkOut()
+        public ActionResult CheckOut()
         {
             List<Movie> shoppingCart = (List<Movie>)Session["Cart"];
 
@@ -102,7 +102,7 @@ namespace MovieProject.Controllers
             var user = (User)Session["User"];
             if(user != null)
             {
-                return View(user);
+                return View(user.Customer);
 
             }
 
@@ -110,8 +110,9 @@ namespace MovieProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult checkOut(Customer customer)
+        public ActionResult CheckOut(Customer customer)
         {
+
             return View();
         }
     }

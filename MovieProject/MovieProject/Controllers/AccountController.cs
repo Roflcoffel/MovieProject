@@ -104,7 +104,7 @@ namespace MovieProject.Controllers
                     var password = Encrypt.EncodePassword(newUser.Password, HashKey);
 
                     newUser.Password = password;
-                    newUser.isAdmin = true;
+                    newUser.isAdmin = false;
                     newUser.Customer = new Customer {
                         FirstName = "Temp",
                         LastName = "Temp",
