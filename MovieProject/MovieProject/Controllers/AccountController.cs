@@ -28,6 +28,57 @@ namespace MovieProject.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult EditUser(Customer customer)
+        {
+            try
+            {
+                var user = (User)Session["User"];
+                if (user.isLoggedIn)
+                {
+                    Customer getCustomer = db.Customers.Find(customer.Id);
+
+                    getCustomer.FirstName = customer.FirstName;
+                    getCustomer.LastName = customer.LastName;
+                    getCustomer.DeliveryZip = customer.DeliveryZip;
+                    getCustomer.DeliveryCity = customer.DeliveryCity;
+                    getCustomer.DeliveryAddress = customer.DeliveryAddress;
+                    getCustomer.BillingAddress = customer.BillingAddress;
+                    getCustomer.BillingCity = customer.BillingCity;
+                    getCustomer.BillingZip = customer.BillingZip;
+                    getCustomer.EmailAddress = customer.EmailAddress;
+                    getCustomer.PhoneNo = customer.PhoneNo;
+
+                    Session["User"] = getCustomer.User;
+                    //db.Customers.Add(getCustomer);
+                    db.SaveChanges();
+
+                    TempData["Message"] = "Profile Updated";
+                    return RedirectToAction("Index", "Account");
+                }
+                else
+                {
+                    TempData["Message"] = "Session Expired";
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (var item in e.EntityValidationErrors)
+                {
+                    sb.Append(item + " errors: ");
+                    foreach (var i in item.ValidationErrors)
+                    {
+                        sb.Append(i.PropertyName + " : " + i.ErrorMessage);
+                    }
+                    sb.Append(Environment.NewLine);
+                }
+                ViewBag.ErrorMessage = "Validation Error: " + sb.ToString();
+                return View();
+            }
+        }
+
         public ActionResult Logout()
         {
             Session.Clear();
