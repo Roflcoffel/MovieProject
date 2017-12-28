@@ -28,11 +28,11 @@ namespace MovieProject.Controllers
             }
         }
 
-        public void Logout()
+        public ActionResult Logout()
         {
             Session.Clear();
             ViewBag.Message = "You Logged out";
-            RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult ShowOrders()
