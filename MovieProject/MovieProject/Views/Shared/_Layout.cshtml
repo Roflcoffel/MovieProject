@@ -48,6 +48,12 @@
 
                     </ul>
                     <ul class="navbar-nav my-2 my-lg-0">
+                        <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
+                            <a href="@Url.Action("Index", "Cart")" class="nav-link">
+                                <i class="fa fa-shopping-cart"></i>
+                                Shopping Cart
+                            </a>
+                        </li>
                         @if (Session["User"] == null)
                         {
                             <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Registration" ? "active" : "")">
@@ -77,11 +83,11 @@
                             </li>
                         }
                     </ul>
-                    <div class="container" style= "float: right" >
+                    @*<div class="container" style= "float: right" >
                         <i class="fa fa-shopping-cart" aria-hidden="true">
                             <a href="#">Shopping Cart</a>
                         </i>
-                    </div>
+                    </div>*@
                     
                     
 
