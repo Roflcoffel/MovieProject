@@ -102,7 +102,14 @@ namespace MovieProject.Controllers
             var user = (User)Session["User"];
             if(user != null)
             {
-                return View(user.Customer);
+
+                CheckOutVM chkVM = new CheckOutVM();
+
+                chkVM.Customer = user.Customer;
+                chkVM.ShoppingCart = shoppingCart;
+                chkVM.TotalCost = (int)shoppingCart.Sum(x => x.Price);
+
+                return View(chkVM);
 
             }
 
@@ -110,8 +117,16 @@ namespace MovieProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult CheckOut(Customer customer)
+        public ActionResult CheckOut(CheckOutVM chkVM)
         {
+            //Create Order
+
+                //Order Rows
+                    //Movie Id
+                    //Order Id
+                    //Price
+           
+            //Date Orderded
 
             return View();
         }
