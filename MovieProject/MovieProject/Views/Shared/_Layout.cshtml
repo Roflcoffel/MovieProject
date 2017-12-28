@@ -37,16 +37,45 @@
                             </a>
                         </li>
  
-                        <li class="nav-item dropdown">
+                        @*<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                 Test 1
                             </a>
                             <div class="dropdown-menu">
                                 <a href="#" class="dropdown-item">Test</a>
                             </div>
-                        </li>
-                        
-                        
+                        </li>*@
+
+                    </ul>
+                    <ul class="navbar-nav my-2 my-lg-0">
+                        @if (Session["User"] == null)
+                        {
+                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Registration" ? "active" : "")">
+                                <a href="@Url.Action("Registration", "Account")" class="nav-link">
+                                    Register
+                                </a>
+                            </li>
+
+                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Login" ? "active" : "")">
+                                <a href="@Url.Action("Login", "Account")" class="nav-link">
+                                    Login
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
+                                <a href="@Url.Action("Index", "Account")" class="nav-link">
+                                    Profile
+                                </a>
+                            </li>
+
+                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Logout" ? "active" : "")">
+                                <a href="@Url.Action("Logout", "Account")" class="nav-link">
+                                    Logout
+                                </a>
+                            </li>
+                        }
                     </ul>
                     <div class="container" style= "float: right" >
                         <i class="fa fa-shopping-cart" aria-hidden="true">
@@ -71,14 +100,12 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 30px">
         @RenderBody()
     </div>
 
-    <footer style="position: absolute; bottom: 0; width: 100%; text-align: center">
-
-                    <span class="text-muted">@today.ToString("yyyy-MM-dd") - Andreas Johansson</span>
-
+    <footer style="position: absolute; bottom: 0; width: 100%; text-align: center; margin-top: 10px">
+        <span class="text-muted">@today.ToString("yyyy-MM-dd") - Andreas Johansson</span>
     </footer>
 
 
