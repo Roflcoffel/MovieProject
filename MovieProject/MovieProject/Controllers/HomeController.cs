@@ -58,6 +58,12 @@ namespace MovieProject.Controllers
             return View(query);
         }
 
+        public ActionResult OverView()
+        {
+            List<Movie> movies = db.Movies.ToList();
+            return View(movies);
+        }
+
         // Create
         public ActionResult CreateMovie()
         {
@@ -81,6 +87,20 @@ namespace MovieProject.Controllers
                 return RedirectToAction("Login", "Account");
             }
             
+        }
+
+        public ActionResult EditMovie(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Movie movie = db.Movies.Find(id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
         }
 
         // Create
