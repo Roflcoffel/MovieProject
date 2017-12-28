@@ -106,7 +106,7 @@ namespace MovieProject.Controllers
 
             }
 
-            return View();  
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
