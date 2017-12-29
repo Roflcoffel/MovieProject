@@ -187,6 +187,7 @@
     <Compile Include="Models\FrontPageView.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieContext.cs" />
+    <Compile Include="Models\ShoppingCartVM.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderRow.cs" />
     <Compile Include="Models\User.cs" />

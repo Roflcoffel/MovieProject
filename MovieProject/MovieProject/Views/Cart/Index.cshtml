@@ -1,28 +1,48 @@
-﻿@model IEnumerable<MovieProject.Models.Movie>
+﻿@model Dictionary<Movie,int>
+
+@using MovieProject.Models
 
 @{
     ViewBag.Title = "Cart";
 }
 
-<div class="row">
-    <div class="text-left btn" >
-        <a class="btn btn-primary" href="@Url.Action("Browse","Home")">Continue shopping</a>
-        @Html.ActionLink("Checkout now", "Checkout", null, new { @class = "btn btn-primary" })
-    </div>
-    </div>
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="CardBorder text-center">
-                <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.ReleaseYear)</p>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
-                    <a href="@Url.Action("RemoveFromCart", "Cart", new {id = item.Id})" class="btn btn-primary">Remove</a>
-                </div>
-            </div>
-        }
+<table class="table table-hover">
+    <tr>
+        <th></th>
+        <th>
+            Title
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            #
+        </th>
 
- </div>
+        <th></th>
+    </tr>
+
+    @foreach (var cart in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => cart.Key.Url)" class="img-fluid" alt="Responsive image">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cart.Key.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cart.Key.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cart.Value)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = cart.Key.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
 
