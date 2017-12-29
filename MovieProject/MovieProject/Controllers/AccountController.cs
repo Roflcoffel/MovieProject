@@ -17,6 +17,27 @@ namespace MovieProject.Controllers
         public ActionResult Index()
         {
             var user = (User)Session["User"];
+
+            if(user == null)
+            {
+                TempData["Message"] = "login to see orders";
+                return RedirectToAction("Login", "Account");
+            }
+
+            if (user.isLoggedIn)
+            {
+                return View(user.Customer);
+            }
+            else
+            {
+                TempData["Message"] = "Session Expired";
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public ActionResult EditUser()
+        {
+            var user = (User)Session["User"];
             if (user.isLoggedIn)
             {
                 return View(user.Customer);
@@ -86,9 +107,29 @@ namespace MovieProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult ShowOrders()
+        public ActionResult Orders()
         {
-            return View();
+            var user = (User)Session["User"];
+
+            if (user == null)
+            {
+                TempData["Message"] = "login to see orders";
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            if (user.isLoggedIn)
+            {
+                var orders = db.Orders.Where(o => o.CustomerId == user.Customer.Id).ToList();
+               
+                return View(orders);
+            }
+            else
+            {
+                TempData["Message"] = "Not Logged in";
+
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public ActionResult Login()
@@ -118,7 +159,7 @@ namespace MovieProject.Controllers
                         dbUser.isLoggedIn = true;
                         db.SaveChanges();
                         Session["User"] = dbUser;
-                        return RedirectToAction("Index", "Account");
+                        return RedirectToAction("Index", "Home");
                     }
 
                     ViewBag.ErrorMessage = "Invallid User Name or Password";
@@ -146,7 +187,7 @@ namespace MovieProject.Controllers
         {
             try
             {
-                
+
                 var chkUser = (from u in db.Users where u.Username == newUser.Username select u).FirstOrDefault();
 
                 if (chkUser == null)
@@ -156,7 +197,8 @@ namespace MovieProject.Controllers
 
                     newUser.Password = password;
                     newUser.isAdmin = false;
-                    newUser.Customer = new Customer {
+                    newUser.Customer = new Customer
+                    {
                         FirstName = "Temp",
                         LastName = "Temp",
                         BillingAddress = "Temp",
@@ -181,7 +223,7 @@ namespace MovieProject.Controllers
                 }
                 ViewBag.ErrorMessage = "User Allredy Exixts!";
                 return View();
-                
+
             }
             catch (DbEntityValidationException e)
             {

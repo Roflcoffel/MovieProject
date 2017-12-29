@@ -1,0 +1,11 @@
+﻿@model IEnumerable<MovieProject.Models.Order>
+
+@{
+    ViewBag.Message = "My Orders";
+}
+
+
+@foreach (var order in Model)
+{
+    @Html.Partial("_OrderPartial", order)
+}

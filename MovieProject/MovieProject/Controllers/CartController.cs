@@ -73,7 +73,7 @@ namespace MovieProject.Controllers
                 shoppingCart = new List<Movie>();
             }
 
-            var movie = shoppingCart.Where(m => m.Id == id).Single() ;
+            var movie = shoppingCart.Where(m => m.Id == id).Take(1).Single();
             if (movie != null)
             {
                 TempData["Message"] = "Movie Removed";
@@ -102,7 +102,14 @@ namespace MovieProject.Controllers
             var user = (User)Session["User"];
             if(user != null)
             {
-                return View(user.Customer);
+
+                CheckOutVM chkVM = new CheckOutVM();
+
+                chkVM.Customer = user.Customer;
+                chkVM.ShoppingCart = shoppingCart;
+                chkVM.TotalCost = (int)shoppingCart.Sum(x => x.Price);
+
+                return View(chkVM);
 
             }
 
@@ -110,10 +117,34 @@ namespace MovieProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult CheckOut(Customer customer)
+        public ActionResult CheckOut(CheckOutVM chkVM)
         {
 
-            return View();
+            //Create Order
+            Order order = new Order
+            {
+                CustomerId = chkVM.Customer.Id,
+                OrderDate = DateTime.Today
+            };
+
+            db.Orders.Add(order);
+            db.SaveChanges();
+
+            foreach (var row in chkVM.ShoppingCart)
+            {
+                OrderRow orows = new OrderRow
+                {
+                    Order = order,
+                    MovieId = row.Id,
+                    Price = row.Price
+                };
+                db.OrderRows.Add(orows);
+                db.SaveChanges();
+            }
+
+            TempData["Message"] = "Order Placed";
+
+            return RedirectToAction("Index","Home");
         }
     }
 }
