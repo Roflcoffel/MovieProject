@@ -144,7 +144,7 @@ namespace MovieProject.Controllers
 
             TempData["Message"] = "Order Placed";
 
-            return RedirectToAction("Orders","Account");
+            return RedirectToAction("Index","Home");
         }
     }
 }

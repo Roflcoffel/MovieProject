@@ -2,12 +2,20 @@
 
 <div class="container">
     <h4>Order #@Model.Id</h4>
+    <hr />
+    <h5>Movies</h5>
     <table>
         @foreach (var orderRow in Model.OrderRows)
         {
-            <tr>@orderRow.Movie.Title</tr>
+            <tr>
+                <td>
+                    @orderRow.Movie.Title
+                </td>
+            </tr>
         }
     </table>
+    <hr />
     <p>Date of purchase: @Model.OrderDate.ToString()</p>
-    <p>Total Price: @Model.OrderRows.Sum(r => r.Price)</p>
+    <p>Total Price: @Model.OrderRows.Sum(r => r.Price) Kr</p>
+    <hr />
 </div>
