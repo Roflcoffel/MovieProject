@@ -28,6 +28,20 @@ namespace MovieProject.Controllers
             }
         }
 
+        public ActionResult EditUser()
+        {
+            var user = (User)Session["User"];
+            if (user.isLoggedIn)
+            {
+                return View(user.Customer);
+            }
+            else
+            {
+                TempData["Message"] = "Session Expired";
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
         [HttpPost]
         public ActionResult EditUser(Customer customer)
         {
@@ -118,7 +132,7 @@ namespace MovieProject.Controllers
                         dbUser.isLoggedIn = true;
                         db.SaveChanges();
                         Session["User"] = dbUser;
-                        return RedirectToAction("Index", "Account");
+                        return RedirectToAction("Index", "Home");
                     }
 
                     ViewBag.ErrorMessage = "Invallid User Name or Password";

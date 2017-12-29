@@ -200,7 +200,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
     <Content Include="Views\Home\EditMovie.cshtml" />
     <Content Include="Views\Home\OverView.cshtml" />
@@ -219,6 +219,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Cart\CheckOut.cshtml" />
     <Content Include="Views\Shared\_OrderPartial.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

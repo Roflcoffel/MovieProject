@@ -2,188 +2,107 @@
 
 @{
     ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<hr />
+<div class="row">
+    <dl class="dl-horizontal col-6">
 
-@using (Html.BeginForm("EditUser", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-{
-                @Html.AntiForgeryToken()
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
 
-                <div class="form-horizontal">
-        <h4>User Account</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.BillingAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.BillingAddress, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.BillingAddress, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <dd><hr/></dd>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.BillingZip, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.BillingZip, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.BillingZip, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingAddress)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.BillingAddress)
+        </dd>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.BillingCity, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.BillingCity, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.BillingCity, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingZip)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.BillingZip)
+        </dd>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.DeliveryAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.DeliveryAddress, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DeliveryAddress, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingCity)
+        </dt>
 
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.DeliveryZip, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.DeliveryZip, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DeliveryZip, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.DeliveryCity, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.DeliveryCity, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DeliveryCity, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-        </div>
-
-}
+        <dd>
+            @Html.DisplayFor(model => model.BillingCity)
+        </dd>
 
 
 
 
 
 
-        @*<table class="table table-hover">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.User.Username)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LastName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.BillingAddress)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.BillingZip)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.BillingCity)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DeliveryAddress)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DeliveryZip)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DeliveryCity)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.EmailAddress)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PhoneNo)
-                    </th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayFor(item => item.User.Username)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.BillingAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.BillingZip)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.BillingCity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.DeliveryAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.DeliveryZip)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.DeliveryCity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.EmailAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(item => item.PhoneNo)
-                    </td>
-                </tr>
 
+    </dl>
+    <dl class="dl-horizontal col-6">
 
-            </table>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+
+        <dd><hr /></dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryZip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryZip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryCity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditUser", new { id = Model.Id })
+</p>
