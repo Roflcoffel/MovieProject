@@ -86,9 +86,28 @@ namespace MovieProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult ShowOrders()
+        public ActionResult Orders()
         {
-            return View();
+            var user = (User)Session["User"];
+
+            if(user == null)
+            {
+                TempData["Message"] = "login to see orders";
+                return RedirectToAction("Login", "Account");
+            }
+
+            if (user.isLoggedIn)
+            {
+                var orders = db.Orders.Where(o => o.CustomerId == user.Customer.Id).ToList();
+               
+                return View(orders);
+            }
+            else
+            {
+                TempData["Message"] = "Not Logged in";
+
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public ActionResult Login()

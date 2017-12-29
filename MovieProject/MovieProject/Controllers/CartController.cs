@@ -119,16 +119,32 @@ namespace MovieProject.Controllers
         [HttpPost]
         public ActionResult CheckOut(CheckOutVM chkVM)
         {
+
             //Create Order
+            Order order = new Order
+            {
+                CustomerId = chkVM.Customer.Id,
+                OrderDate = DateTime.Today
+            };
 
-                //Order Rows
-                    //Movie Id
-                    //Order Id
-                    //Price
-           
-            //Date Orderded
+            db.Orders.Add(order);
+            db.SaveChanges();
 
-            return View();
+            foreach (var row in chkVM.ShoppingCart)
+            {
+                OrderRow orows = new OrderRow
+                {
+                    Order = order,
+                    MovieId = row.Id,
+                    Price = row.Price
+                };
+                db.OrderRows.Add(orows);
+                db.SaveChanges();
+            }
+
+            TempData["Message"] = "Order Placed";
+
+            return RedirectToAction("Orders","Account");
         }
     }
 }
