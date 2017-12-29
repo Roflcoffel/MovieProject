@@ -1,0 +1,14 @@
+﻿@model MovieProject.Models.Movie
+
+<!--Card View-->
+<div class="row">
+        <div class="CardBorder text-center">
+            <img class="card-img-top" src="@Html.DisplayFor(modelItem => Model.Url)" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => Model.Title)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => Model.ReleaseYear)</p>
+                <p class="card-text">@Html.DisplayFor(modelItem => modelItem.Price)</p>
+                <a href="@Url.Action("AddToCart", "Cart", new {id = Model.Id})" class="btn btn-primary">Add To Cart</a>
+            </div>
+        </div>
+</div>
