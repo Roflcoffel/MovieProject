@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,6 +16,7 @@ namespace MovieProject.Controllers
         private MovieContext db = new MovieContext();
 
         // Get Movie
+
 
         public ActionResult Index()
         {
@@ -58,9 +60,57 @@ namespace MovieProject.Controllers
             return View(query);
         }
 
+        [HttpPost]
+        public ActionResult Browse(string searchMovie)
+        {
+
+            var movies = from m in db.Movies
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchMovie))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchMovie));
+
+                if (movies.Count() == 0)
+                {
+                    ViewBag.ErrorMessage = "Doesn't exist!";
+                }
+            }
+
+
+            return View(movies.ToList());
+
+            
+        }
+
         public ActionResult OverView()
         {
-            List<Movie> movies = db.Movies.ToList();
+            return View(db.Movies.ToList());
+        }
+
+
+        [HttpPost]
+        public ActionResult OverView(string searchString)
+        {
+
+            var movies = from m in db.Movies
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+                   
+                if(movies.Count() == 0)
+                {
+                    ViewBag.ErrorMessage = "Doesn't exist!";
+                }
+                //interstellar
+                //INTERSTELLAR
+
+                //I nterstellar
+            }
+           
+           
             return View(movies);
         }
 
@@ -193,6 +243,21 @@ namespace MovieProject.Controllers
             return RedirectToAction("OverView");
         }
 
+
+        // Search Movie
+
+        public ActionResult SearchMovie(string searchString)
+        {
+            var movies = from m in db.Movies
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            return RedirectToAction("OverView","Home",movies.ToList());
+        }
 
         protected override void Dispose(bool disposing)
         {

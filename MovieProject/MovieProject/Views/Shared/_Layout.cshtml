@@ -35,6 +35,9 @@
                             </a>
                         </li>
 
+
+                       
+
                         @if (Session["User"] != null)
                         {
                             if (((User)Session["User"]).isAdmin)
@@ -120,6 +123,7 @@
 
     <div class="container" style="margin-bottom: 30px">
         @RenderBody()
+        <p class="text-danger">@ViewBag.ErrorMessage</p>
     </div>
 
     <footer style="position: absolute; bottom: 0; width: 100%; text-align: center; margin-top: 10px">
