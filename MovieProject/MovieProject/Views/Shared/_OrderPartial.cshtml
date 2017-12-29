@@ -1,0 +1,12 @@
+﻿@model MovieProject.Models.Order
+
+<div class="container">
+    <h4>Order #@Model.Id</h4>
+    <table>
+        @foreach (var orderRow in Model.OrderRows)
+        {
+            <tr>@orderRow.Movie.Title</tr>
+        }
+    </table>
+    <p>Date of purchase: @Model.OrderDate.ToString()</p>
+</div>
