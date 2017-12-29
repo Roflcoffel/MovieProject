@@ -199,16 +199,16 @@ namespace MovieProject.Controllers
                     newUser.isAdmin = false;
                     newUser.Customer = new Customer
                     {
-                        FirstName = "Temp",
-                        LastName = "Temp",
+                        FirstName = newUser.Customer.FirstName,
+                        LastName = newUser.Customer.LastName,
                         BillingAddress = "Temp",
                         BillingCity = "Temp",
                         BillingZip = "Temp",
                         DeliveryAddress = "Temp",
                         DeliveryCity = "Temp",
                         DeliveryZip = "Temp",
-                        EmailAddress = "Temp",
-                        PhoneNo = "Temp",
+                        EmailAddress = newUser.Customer.EmailAddress,
+                        PhoneNo = newUser.Customer.PhoneNo,
                     };
                     //newUser.CustomerId = db.Customers.OrderByDescending(c => c.Id).Take(1).Single().Id;
                     newUser.HashCode = HashKey;

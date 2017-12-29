@@ -5,54 +5,34 @@
 }
 <br />
 <h3>Most Popular Movies</h3>
-<div class="row" style="background-color: darkslategray">
+<div class="row">
     @foreach (var item in Model.MostPopular)
     {
-        <div class="CardBorder text-center" style="background-color:white">
-            <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-            </div>
-        </div>
+        Html.RenderPartial("_MoviePartial", item);
     }
 </div>
 <br />
 <h3>Newest Movies</h3>
-<div class="row" style="background-color: darkslategray">
-    @foreach (var item in Model.Newest)
-    {
-        <div class="CardBorder text-center" style="background-color:white">
-            <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-            </div>
-        </div>
-    }
+<div class="row">
+@foreach (var item in Model.Newest)
+{
+    Html.RenderPartial("_MoviePartial", item);
+}
 </div>
 <br />
 <h3>Cheapest Movies</h3>
-<div class="row" style="background-color: darkslategray">
+<div class="row">
     @foreach (var item in Model.Cheapest)
     {
-        <div class="CardBorder text-center" style="background-color:white">
-            <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-            </div>
-        </div>
+        Html.RenderPartial("_MoviePartial", item);
     }
 </div>
 <br />
 <h3>Oldest Movies</h3>
-<div class="row" style="background-color: darkslategray">
+<div class="row">
     @foreach (var item in Model.Oldest)
     {
-        <div class="CardBorder text-center" style="background-color:white">
-            <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Url)" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-            </div>
-        </div>
+        Html.RenderPartial("_MoviePartial", item);
     }
 </div>
 <br />
