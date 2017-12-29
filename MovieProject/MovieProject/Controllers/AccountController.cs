@@ -17,6 +17,13 @@ namespace MovieProject.Controllers
         public ActionResult Index()
         {
             var user = (User)Session["User"];
+
+            if(user == null)
+            {
+                TempData["Message"] = "login to see orders";
+                return RedirectToAction("Login", "Account");
+            }
+
             if (user.isLoggedIn)
             {
                 return View(user.Customer);
@@ -90,11 +97,12 @@ namespace MovieProject.Controllers
         {
             var user = (User)Session["User"];
 
-            if(user == null)
+            if (user == null)
             {
                 TempData["Message"] = "login to see orders";
                 return RedirectToAction("Login", "Account");
             }
+
 
             if (user.isLoggedIn)
             {
@@ -165,7 +173,7 @@ namespace MovieProject.Controllers
         {
             try
             {
-                
+
                 var chkUser = (from u in db.Users where u.Username == newUser.Username select u).FirstOrDefault();
 
                 if (chkUser == null)
@@ -175,7 +183,8 @@ namespace MovieProject.Controllers
 
                     newUser.Password = password;
                     newUser.isAdmin = false;
-                    newUser.Customer = new Customer {
+                    newUser.Customer = new Customer
+                    {
                         FirstName = "Temp",
                         LastName = "Temp",
                         BillingAddress = "Temp",
@@ -200,7 +209,7 @@ namespace MovieProject.Controllers
                 }
                 ViewBag.ErrorMessage = "User Allredy Exixts!";
                 return View();
-                
+
             }
             catch (DbEntityValidationException e)
             {
