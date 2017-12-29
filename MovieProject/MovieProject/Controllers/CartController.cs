@@ -73,7 +73,7 @@ namespace MovieProject.Controllers
                 shoppingCart = new List<Movie>();
             }
 
-            var movie = shoppingCart.Where(m => m.Id == id).Single() ;
+            var movie = shoppingCart.Where(m => m.Id == id).Take(1).Single();
             if (movie != null)
             {
                 TempData["Message"] = "Movie Removed";
