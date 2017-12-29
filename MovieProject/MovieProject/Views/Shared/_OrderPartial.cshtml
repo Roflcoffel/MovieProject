@@ -9,4 +9,5 @@
         }
     </table>
     <p>Date of purchase: @Model.OrderDate.ToString()</p>
+    <p>Total Price: @Model.OrderRows.Sum(r => r.Price)</p>
 </div>
