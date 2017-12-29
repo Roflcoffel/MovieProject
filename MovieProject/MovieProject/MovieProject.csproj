@@ -196,7 +196,7 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Shared\MoviePartial.cshtml" />
+    <Content Include="Views\Shared\_MoviePartial.cshtml" />
     <Content Include="Views\Home\CreateMovie.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />

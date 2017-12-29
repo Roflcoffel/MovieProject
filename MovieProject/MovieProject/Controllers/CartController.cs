@@ -144,6 +144,8 @@ namespace MovieProject.Controllers
 
             TempData["Message"] = "Order Placed";
 
+            Session["Cart"] = null;
+
             return RedirectToAction("Index","Home");
         }
     }
