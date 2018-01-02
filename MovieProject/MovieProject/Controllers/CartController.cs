@@ -87,27 +87,21 @@ namespace MovieProject.Controllers
             return RedirectToAction("Browse", "Home");
         }
 
-        public ActionResult RemoveFromCart(int? id)
+        public ActionResult DeleteAmount(int? id)
         {
-            List<Movie> shoppingCart = (List<Movie>)Session["Cart"];
-
-            if (shoppingCart == null)
-            {
-                shoppingCart = new List<Movie>();
-            }
-
-            var movie = shoppingCart.Where(m => m.Id == id).Take(1).Single();
-            if (movie != null)
-            {
-                TempData["Message"] = "Movie Removed";
-                shoppingCart.Remove(movie);
-                Session["Cart"] = shoppingCart;
-            }
-            else
-            {
-                TempData["Message"] = "Movie Doesnt Exist";
-                RedirectToAction("Browse", "Home");
-            }
+            List<Movie> sessionCopy = (List<Movie>)Session["Cart"];
+            sessionCopy.Remove(
+                sessionCopy.Where(x => x.Id == id).Take(1).Single()
+            );
+            Session["Cart"] = sessionCopy;
+            return RedirectToAction("Index");
+        }
+        
+        public ActionResult AddAmount(int? id)
+        {
+            List<Movie> sessionCopy = (List<Movie>)Session["Cart"];
+            sessionCopy.Add(db.Movies.Find(id));
+            Session["Cart"] = sessionCopy;
 
             return RedirectToAction("Index", "Cart");
         }

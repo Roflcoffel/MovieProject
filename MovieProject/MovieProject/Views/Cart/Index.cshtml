@@ -38,11 +38,11 @@
                 @Html.DisplayFor(modelItem => cart.Value)
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = cart.Key.Id })
+                @Html.ActionLink("Delete", "DeleteAmount", new { id = cart.Key.Id }) | 
+                @Html.ActionLink("Add", "AddAmount", new { id = cart.Key.Id })
             </td>
         </tr>
     }
 
 </table>
-
-
+<a href="@Url.Action("CheckOut")" class="btn btn-primary">Checkout</a>
