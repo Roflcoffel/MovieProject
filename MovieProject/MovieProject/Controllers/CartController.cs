@@ -20,6 +20,9 @@ namespace MovieProject.Controllers
 
             List<Movie> shoppingCart = (List<Movie>)Session["Cart"];
 
+            Dictionary<Movie, int> cartVM = new Dictionary<Movie, int>();
+
+            
             if (shoppingCart == null)
             {
                 shoppingCart = new List<Movie>();
@@ -28,7 +31,21 @@ namespace MovieProject.Controllers
            
             if (shoppingCart != null)
             {
-                return View(shoppingCart);
+                List<Movie> shoppingCartUnique = shoppingCart.Distinct(new MovieComparer()).ToList();
+
+                foreach (var item in shoppingCartUnique)
+                {
+                    cartVM.Add(item, 0);
+                }
+
+                //foreach (var item in shoppingCart)
+                //{
+                //    var count = shoppingCart.Where(x => x.Id == item.Id).Count();
+
+                //    cartVM[item] = count;
+                //}
+                
+                return View(cartVM);
             }
             else
             {

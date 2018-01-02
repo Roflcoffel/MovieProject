@@ -186,6 +186,7 @@
     <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\FrontPageView.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MovieComparer.cs" />
     <Compile Include="Models\MovieContext.cs" />
     <Compile Include="Models\ShoppingCartVM.cs" />
     <Compile Include="Models\Order.cs" />
