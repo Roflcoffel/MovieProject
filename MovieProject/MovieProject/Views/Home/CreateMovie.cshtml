@@ -4,7 +4,7 @@
     ViewBag.Title = "CreateMovie";
 }
 
-<h2>CreateMovie</h2>
+
 
 
 @using (Html.BeginForm("CreateMovie", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
@@ -12,6 +12,7 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
+                    
         <h4>Movie</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
