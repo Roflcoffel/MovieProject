@@ -182,24 +182,18 @@ namespace MovieProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditMovie(int id, Movie movie, HttpPostedFileBase file)
+        public ActionResult EditMovie(int id, Movie movie)
         {
-            try
+            if (Request.Files.Count > 0)
             {
-                if (file.ContentLength > 0)
+                if(Request.Files[0].ContentLength > 0)
                 {
-                    string filename = Path.GetFileName(file.FileName);
+                    string filename = Path.GetFileName(Request.Files[0].FileName);
                     string path = Path.Combine(Server.MapPath("~/Content/Image"), filename);
-                    file.SaveAs(path);
+                    Request.Files[0].SaveAs(path);
                     db.Movies.Find(id).Url = "/Content/Image/" + filename;
+                    ViewBag.Message = "File Uploaded";
                 }
-                ViewBag.Message = "File Uploaded";
-
-            }
-            catch
-            {
-                ViewBag.Message = "File Upload Failed!!";
-                return View();
             }
             db.Movies.Find(id).Title = movie.Title;
             db.Movies.Find(id).Director = movie.Director;
