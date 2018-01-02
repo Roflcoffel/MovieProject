@@ -18,34 +18,40 @@ namespace MovieProject.Controllers
             //Cross Controller Messages
             ViewBag.Message = TempData["Message"];
 
-            List<Movie> shoppingCart = (List<Movie>)Session["Cart"];
+            List<Movie> sessionCart = (List<Movie>)Session["Cart"];
 
-            Dictionary<Movie, int> cartVM = new Dictionary<Movie, int>();
+            Dictionary<int, int> tempCart = new Dictionary<int, int>();
+            Dictionary<Movie, int> cart = new Dictionary<Movie, int>();
 
-            
-            if (shoppingCart == null)
+            if (sessionCart == null)
             {
-                shoppingCart = new List<Movie>();
+                sessionCart = new List<Movie>();
             }
             
            
-            if (shoppingCart != null)
+            if (sessionCart != null)
             {
-                List<Movie> shoppingCartUnique = shoppingCart.Distinct(new MovieComparer()).ToList();
+                List<Movie> sessionCartUnique = sessionCart.Distinct(new MovieComparer()).ToList();
 
-                foreach (var item in shoppingCartUnique)
+                foreach (var item in sessionCartUnique)
                 {
-                    cartVM.Add(item, 0);
+                    tempCart.Add(item.Id, 0);
                 }
 
-                //foreach (var item in shoppingCart)
-                //{
-                //    var count = shoppingCart.Where(x => x.Id == item.Id).Count();
+                foreach (var item in sessionCart)
+                {
+                    var count = sessionCart.Where(x => x.Id == item.Id).Count();
 
-                //    cartVM[item] = count;
-                //}
-                
-                return View(cartVM);
+                    tempCart[item.Id] = count;
+                }
+
+                //Convert Dict <int, int> to <Movie, int>
+                foreach (var item in tempCart)
+                {
+                    cart.Add(db.Movies.Find(item.Key), item.Value);
+                }
+
+                return View(cart);
             }
             else
             {

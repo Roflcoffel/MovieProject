@@ -1,4 +1,5 @@
 ﻿using MovieProject.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -51,25 +52,30 @@ namespace MovieProject.Controllers
             return View(frontPage);
         }
 
-        public ActionResult Browse()
+        public ActionResult Browse(int? page)
         {
             ViewBag.Message = TempData["Message"];
 
-            var query = db.Movies.ToList();
+            var allMovies = db.Movies.ToList();
 
-            return View(query);
+            var pageNumber = page ?? 1;
+            var onePageOfMovies = allMovies.ToPagedList(pageNumber, 5);
+            
+            return View(onePageOfMovies);
         }
 
         [HttpPost]
-        public ActionResult Browse(string searchMovie)
+        public ActionResult Browse(string searchMovie, int? page)
         {
 
-            var movies = from m in db.Movies
-                         select m;
+            var movies = (from m in db.Movies
+                         select m).ToList();
+
+            var pageNumber = page ?? 1;
 
             if (!String.IsNullOrEmpty(searchMovie))
             {
-                movies = movies.Where(s => s.Title.Contains(searchMovie));
+                movies = movies.Where(s => s.Title.Contains(searchMovie)).ToList();
 
                 if (movies.Count() == 0)
                 {
@@ -77,10 +83,7 @@ namespace MovieProject.Controllers
                 }
             }
 
-
-            return View(movies.ToList());
-
-            
+            return View(movies.ToPagedList(pageNumber, 5));
         }
 
         public ActionResult OverView()

@@ -1,4 +1,7 @@
-﻿@model List<MovieProject.Models.Movie>
+﻿@model PagedList<MovieProject.Models.Movie>
+
+@using PagedList.Mvc
+@using PagedList
 
 @{
     ViewBag.Title = "Browse";
@@ -20,3 +23,14 @@
         Html.RenderPartial("_MoviePartial", movie);
     }
 </div>
+
+@Html.PagedListPager(Model, page => Url.Action("Browse", new {
+    page,
+    searchMovie = Request.QueryString["searchMovie"]
+}),
+    new PagedListRenderOptions() {
+        Display = PagedListDisplayMode.IfNeeded,
+        DisplayPageCountAndCurrentLocation = true,
+        DisplayItemSliceAndTotal = true
+    }
+)
