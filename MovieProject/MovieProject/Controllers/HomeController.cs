@@ -52,38 +52,27 @@ namespace MovieProject.Controllers
             return View(frontPage);
         }
 
-        public ActionResult Browse(int? page)
+        public ActionResult Browse(string search, int? page)
         {
             ViewBag.Message = TempData["Message"];
 
             var allMovies = db.Movies.ToList();
 
-            var pageNumber = page ?? 1;
-            var onePageOfMovies = allMovies.ToPagedList(pageNumber, 5);
-            
-            return View(onePageOfMovies);
-        }
-
-        [HttpPost]
-        public ActionResult Browse(string searchMovie, int? page)
-        {
-
-            var movies = (from m in db.Movies
-                         select m).ToList();
-
-            var pageNumber = page ?? 1;
-
-            if (!String.IsNullOrEmpty(searchMovie))
+            //Search
+            if (!String.IsNullOrEmpty(search))
             {
-                movies = movies.Where(s => s.Title.Contains(searchMovie)).ToList();
+                allMovies = allMovies.Where(s => s.Title.Contains(search)).ToList();
 
-                if (movies.Count() == 0)
+                if (allMovies.Count() == 0)
                 {
                     ViewBag.ErrorMessage = "Doesn't exist!";
                 }
             }
 
-            return View(movies.ToPagedList(pageNumber, 5));
+            var pageNumber = page ?? 1;
+            var onePageOfMovies = allMovies.ToPagedList(pageNumber, 5);
+            
+            return View(onePageOfMovies);
         }
 
         public ActionResult OverView()
