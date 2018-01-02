@@ -7,10 +7,12 @@
     ViewBag.Title = "Browse";
 }
 
- @using (Html.BeginForm("Browse", "Home"))
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+ @using (Html.BeginForm("Browse", "Home", FormMethod.Get))
  {
     <p>
-        Search: @Html.TextBox("searchMovie")
+        Search: @Html.TextBox("search")
         <input type="submit" value="Find">
 
     </p>
@@ -26,11 +28,11 @@
 
 @Html.PagedListPager(Model, page => Url.Action("Browse", new {
     page,
-    searchMovie = Request.QueryString["searchMovie"]
+    search = Request.QueryString["search"]
 }),
-    new PagedListRenderOptions() {
+    new PagedListRenderOptions()
+    {
         Display = PagedListDisplayMode.IfNeeded,
-        DisplayPageCountAndCurrentLocation = true,
-        DisplayItemSliceAndTotal = true
+        DisplayPageCountAndCurrentLocation = true
     }
 )
