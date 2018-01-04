@@ -191,10 +191,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801041207438_Review.cs" />
-    <Compile Include="Migrations\201801041207438_Review.Designer.cs">
-      <DependentUpon>201801041207438_Review.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CheckOutVM.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -254,11 +250,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801041207438_Review.resx">
-      <DependentUpon>201801041207438_Review.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
