@@ -271,6 +271,13 @@ namespace MovieProject.Controllers
             return RedirectToAction("OverView","Home",movies.ToList());
         }
 
+        [HttpPost]
+        public ActionResult MovieInfo(int? Id)
+        {
+            return View();
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
