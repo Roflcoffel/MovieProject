@@ -146,8 +146,9 @@ namespace MovieProject.Controllers
                         string path = Path.Combine(Server.MapPath("~/Content/Image"), filename);
                         file.SaveAs(path);
                         movie.Url = "/Content/Image/" + filename;
+                        ViewBag.Message = "File Uploaded";
                     }
-                    ViewBag.Message = "File Uploaded";
+                   
 
                 }
                 catch
