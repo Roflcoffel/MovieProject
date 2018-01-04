@@ -15,7 +15,7 @@
                     <p class="card-text">@Html.DisplayFor(modelItem => Model.Director)</p>
                 </div>
                 <div style="height: 40px">
-                    <p class="card-text">@Html.DisplayFor(modelItem => modelItem.Price)</p>
+                    <p class="card-text">@Html.DisplayFor(modelItem => Model.Price)</p>
                 </div>
                 <div>
                     <a href="@Url.Action("AddToCart", "Cart", new {id = Model.Id})" class="btn btn-primary" style="align-content: center">Add To Cart</a>

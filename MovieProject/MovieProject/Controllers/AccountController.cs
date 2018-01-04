@@ -95,7 +95,7 @@ namespace MovieProject.Controllers
                 }
                 else
                 {
-                    TempData["Message"] = "Session Expired";
+                    TempData["Message"] = "You Have To Login!";
                     return RedirectToAction("Login", "Account");
                 }
             }
