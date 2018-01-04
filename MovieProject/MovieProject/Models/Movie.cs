@@ -26,5 +26,6 @@ namespace MovieProject.Models
         public string Url { get; set; }
 
         public virtual ICollection<OrderRow> OrderRows { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

@@ -77,6 +77,8 @@ namespace MovieProject.Controllers
 
         public ActionResult OverView()
         {
+            ViewBag.Message = TempData["Message"];
+
             return View(db.Movies.ToList());
         }
 
@@ -96,17 +98,16 @@ namespace MovieProject.Controllers
                 {
                     ViewBag.ErrorMessage = "Doesn't exist!";
                 }
-                //interstellar
-                //INTERSTELLAR
-
-                //I nterstellar
             }
            
            
             return View(movies);
         }
 
-        // Create
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult CreateMovie()
         {
             var user = (User)Session["User"];
@@ -144,23 +145,34 @@ namespace MovieProject.Controllers
                     {
                         string filename = Path.GetFileName(file.FileName);
                         string path = Path.Combine(Server.MapPath("~/Content/Image"), filename);
-                        file.SaveAs(path);
-                        movie.Url = "/Content/Image/" + filename;
-                        ViewBag.Message = "File Uploaded";
-                    }
-                   
 
+                        string extension = Path.GetExtension(filename);
+                        if (extension == ".jpg" || extension == ".png")
+                        {
+                            file.SaveAs(path);
+                            movie.Url = "/Content/Image/" + filename;
+
+                            db.Movies.Add(movie);
+                            db.SaveChanges();
+
+                            TempData["Message"] = "File Uploaded";
+                        }
+                        else
+                        {
+                            TempData["Message"] = "Invalid File Format!";
+
+                            return RedirectToAction("OverView");
+                        }
+                       
+                    }
                 }
                 catch
                 {
-                    ViewBag.Message = "File Upload Failed!!";
-                    return View();
+                    TempData["Message"] = "File Upload Failed!!";
+                    return RedirectToAction("OverView");
                 }
 
-                db.Movies.Add(movie);
-                db.SaveChanges();
-
-                return View();
+                return RedirectToAction("OverView");
                 
             }
 
@@ -191,9 +203,22 @@ namespace MovieProject.Controllers
                 {
                     string filename = Path.GetFileName(Request.Files[0].FileName);
                     string path = Path.Combine(Server.MapPath("~/Content/Image"), filename);
-                    Request.Files[0].SaveAs(path);
-                    db.Movies.Find(id).Url = "/Content/Image/" + filename;
-                    ViewBag.Message = "File Uploaded";
+
+                    string extension = Path.GetExtension(filename);
+
+                    if(extension == ".jpg" || extension == ".png")
+                    {
+                        Request.Files[0].SaveAs(path);
+                        db.Movies.Find(id).Url = "/Content/Image/" + filename;
+                        TempData["Message"] = "File Uploaded";
+                    }
+                    else
+                    {
+                        TempData["Message"] = "Invalid File Format!";
+
+                        return RedirectToAction("OverView");
+                    }
+
                 }
             }
             db.Movies.Find(id).Title = movie.Title;

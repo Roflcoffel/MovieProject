@@ -8,19 +8,26 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Validation;
 using System.Text;
 
+/// <summary>
+/// Handles login, registration, account page and control.
+/// </summary>
 namespace MovieProject.Controllers
 {
     public class AccountController : Controller
     {
         private MovieContext db = new MovieContext();
 
+        /// <summary>
+        /// Profile page.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var user = (User)Session["User"];
 
             if(user == null)
             {
-                TempData["Message"] = "login to see orders";
+                TempData["Message"] = "login to see profile";
                 return RedirectToAction("Login", "Account");
             }
 
@@ -35,6 +42,10 @@ namespace MovieProject.Controllers
             }
         }
 
+        /// <summary>
+        /// Edit profile information page.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult EditUser()
         {
             var user = (User)Session["User"];
@@ -49,6 +60,11 @@ namespace MovieProject.Controllers
             }
         }
 
+        /// <summary>
+        /// Edit profile information page.
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult EditUser(Customer customer)
         {
@@ -100,6 +116,10 @@ namespace MovieProject.Controllers
             }
         }
 
+        /// <summary>
+        /// Logout action redirects to Index in controller Home.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logout()
         {
             Session.Clear();
@@ -107,6 +127,10 @@ namespace MovieProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Display the current loggedin accounts orders.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Orders()
         {
             var user = (User)Session["User"];
@@ -132,6 +156,10 @@ namespace MovieProject.Controllers
             }
         }
 
+        /// <summary>
+        /// Login page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Login()
         {
             ViewBag.Message = TempData["Message"];
@@ -139,6 +167,11 @@ namespace MovieProject.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Login page, with some simple encryption.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Login(User user)
         {
@@ -176,11 +209,21 @@ namespace MovieProject.Controllers
             }
         }
 
+        /// <summary>
+        /// Registration page.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Registration()
         {
             return View();
         }
 
+        /// <summary>
+        /// Register a new <code>User</code> and <code>Customer</code>.
+        /// and adds some simple encryption.
+        /// </summary>
+        /// <param name="newUser"></param>
+        /// <returns></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Registration(User newUser)
@@ -210,7 +253,6 @@ namespace MovieProject.Controllers
                         EmailAddress = newUser.Customer.EmailAddress,
                         PhoneNo = newUser.Customer.PhoneNo,
                     };
-                    //newUser.CustomerId = db.Customers.OrderByDescending(c => c.Id).Take(1).Single().Id;
                     newUser.HashCode = HashKey;
                     newUser.isLoggedIn = false;
 
