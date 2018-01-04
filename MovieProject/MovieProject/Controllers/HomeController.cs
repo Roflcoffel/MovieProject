@@ -151,7 +151,7 @@ namespace MovieProject.Controllers
                         {
                             file.SaveAs(path);
                             movie.Url = "/Content/Image/" + filename;
-
+                            movie.Rating = 0;
                             db.Movies.Add(movie);
                             db.SaveChanges();
 
