@@ -38,6 +38,7 @@ namespace MovieProject.Controllers
                     tempCart.Add(item.Id, 0);
                 }
 
+                //Count items in cart
                 foreach (var item in sessionCart)
                 {
                     var count = sessionCart.Where(x => x.Id == item.Id).Count();
@@ -50,6 +51,8 @@ namespace MovieProject.Controllers
                 {
                     cart.Add(db.Movies.Find(item.Key), item.Value);
                 }
+
+                ViewBag.Sum = sessionCart.Sum(x => x.Price);
 
                 return View(cart);
             }
