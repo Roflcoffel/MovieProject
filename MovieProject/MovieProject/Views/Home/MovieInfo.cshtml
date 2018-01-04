@@ -1,66 +1,52 @@
 ﻿@model MovieProject.Models.Movie
 
 @{
-    Layout = null;
+    ViewBag.Title = "Info";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Movie</title>
-</head>
-<body>
-    <div>
-        <h4>Movie</h4>
-        <hr />
+<div class="row">
+    <div class="col-3">
+        <img src="@Html.DisplayFor(model => model.Url)"/>
+    </div>
+    <div class="col">
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Title)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Title)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Director)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Director)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.ReleaseYear)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.ReleaseYear)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Price)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Price)
             </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Url)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Url)
-            </dd>
-    
         </dl>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+</div>
+
+<br />
+
+<div>
+    <a href="@Url.Action("AddToCart", "Cart", new {id = Model.Id})" class="btn btn-primary" style="align-content: center">Add To Cart</a>
+</div>

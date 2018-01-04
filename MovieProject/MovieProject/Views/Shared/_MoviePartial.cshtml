@@ -2,25 +2,27 @@
 
 <!--Card View-->
 <div class="row">
-        <div class="CardBorder text-center">
-            <img class="card-img-top img-thumbnail" style="height: 300px" src="@Html.DisplayFor(modelItem => Model.Url)" alt="Card image cap">
-            <div class="card-body" style="padding: 5px;">
-                <div style="height: 80px; overflow-wrap:break-word">
+    <div class="CardBorder text-center">
+        <img class="card-img-top img-thumbnail" style="height: 300px" src="@Html.DisplayFor(modelItem => Model.Url)" alt="Card image cap">
+        <div class="card-body" style="padding: 5px;">
+            <div style="height: 80px; overflow-wrap:break-word">
+                <a href="@Url.Action("MovieInfo", new { id = Model.Id })">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => Model.Title)</h5>
-                </div>
-                <div style="height: 30px">
-                    <p class="card-text">@Html.DisplayFor(modelItem => Model.ReleaseYear)</p>
-                </div>
-                <div style="height: 30px">
-                    <p class="card-text">@Html.DisplayFor(modelItem => Model.Director)</p>
-                </div>
-                <div style="height: 40px">
-                    <p class="card-text">@Html.DisplayFor(modelItem => Model.Price)</p>
-                </div>
-                <div>
-                    <a href="@Url.Action("AddToCart", "Cart", new {id = Model.Id})" class="btn btn-primary" style="align-content: center">Add To Cart</a>
-                </div>
-                
+                </a>
             </div>
+            <div style="height: 30px">
+                <p class="card-text">@Html.DisplayFor(modelItem => Model.ReleaseYear)</p>
+            </div>
+            <div style="height: 30px">
+                <p class="card-text">@Html.DisplayFor(modelItem => Model.Director)</p>
+            </div>
+            <div style="height: 40px">
+                <p class="card-text">@Html.DisplayFor(modelItem => Model.Price)</p>
+            </div>
+            <div>
+                <a href="@Url.Action("AddToCart", "Cart", new {id = Model.Id})" class="btn btn-primary" style="align-content: center">Add To Cart</a>
+            </div>
+
         </div>
+    </div>
 </div>

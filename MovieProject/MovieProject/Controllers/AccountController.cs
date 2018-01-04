@@ -8,11 +8,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Validation;
 using System.Text;
 
-/// <summary>
-/// Handles login, registration, account page and control.
-/// </summary>
 namespace MovieProject.Controllers
 {
+    /// <summary>
+    /// Handles login, registration, account page and control.
+    /// </summary>
     public class AccountController : Controller
     {
         private MovieContext db = new MovieContext();
