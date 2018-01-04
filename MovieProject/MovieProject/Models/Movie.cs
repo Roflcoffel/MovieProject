@@ -25,6 +25,15 @@ namespace MovieProject.Models
         [DataType(DataType.ImageUrl)]
         public string Url { get; set; }
 
+        public int Rating { get; set; }
+
         public virtual ICollection<OrderRow> OrderRows { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
+
+        //Functions
+        public void UpdateRating()
+        {
+            Rating = Reviews.Sum(r => r.Rating) / Reviews.Count();
+        }
     }
 }
