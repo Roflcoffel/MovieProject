@@ -23,7 +23,8 @@ namespace MovieStore.App_Start {
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/umd/popper.min.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/bootstrap.js"));
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/MovieScripts/Site.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap-flatly.css",

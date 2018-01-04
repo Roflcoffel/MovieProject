@@ -6,10 +6,18 @@
 
 <div class="row">
     <div class="col-3">
-        <img src="@Html.DisplayFor(model => model.Url)"/>
+        <img style="width: 220px; height: 326px" src="@Html.DisplayFor(model => model.Url)" />
     </div>
     <div class="col">
         <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Rating)
+            </dd>
+
             <dt>
                 @Html.DisplayNameFor(model => model.Title)
             </dt>
@@ -47,6 +55,40 @@
 
 <br />
 
-<div>
-    <a href="@Url.Action("AddToCart", "Cart", new {id = Model.Id})" class="btn btn-primary" style="align-content: center">Add To Cart</a>
+<div class="row">
+    <div class="col-2">
+        <a href="@Url.Action("AddToCart", "Cart", new {id = Model.Id})" class="btn btn-primary" style="align-content: center">Add To Cart</a>
+    </div>
+    <div class="col">
+        <a href="#" id="reviewButton" class="btn btn-primary" style="align-content: center">Write a Review</a>
+
+    </div>
 </div>
+
+<br />
+
+<div id="hiddenReview" style="display:none">
+    @using (Html.BeginForm("MovieInfo"))
+    {
+        @Html.Hidden("Id", Model.Id);
+
+        @Html.TextArea("review", new { style="width: 600px; height: 200px;" })
+
+        <br /><br />
+
+        <input type="submit" value="Submit" />
+    }
+</div>
+
+<h3>Reviews</h3>
+
+@foreach (var item in Model.Reviews)
+{
+    <div style="background-color: lightgrey;>
+        <p>@Html.DisplayFor(x => item.Customer.User.Username)</p>
+    </div>
+    <div style="background-color: lightskyblue;">
+        <p>@Html.DisplayFor(x => item.Content)</p>
+    </div>
+    
+}
