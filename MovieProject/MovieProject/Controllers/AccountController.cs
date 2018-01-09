@@ -192,6 +192,14 @@ namespace MovieProject.Controllers
                         dbUser.isLoggedIn = true;
                         db.SaveChanges();
                         Session["User"] = dbUser;
+
+                        if(TempData["OldAction"].ToString() == "CheckOut")
+                        {
+                            
+                            TempData["OldAction"] = "";
+                            return RedirectToAction("CheckOut", "Cart");
+                        }
+
                         return RedirectToAction("Index", "Home");
                     }
 

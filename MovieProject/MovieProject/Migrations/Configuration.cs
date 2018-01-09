@@ -15,10 +15,10 @@ namespace MovieProject.Migrations
 
         protected override void Seed(MovieProject.Models.MovieContext context)
         {
-            Movie mov1 = new Movie { Title = "Interstellar", Director = "Christoper Nolan", ReleaseYear = 2014, Price = 180, Url = "/Content/Image/Interstellar_film_poster.jpg" };
-            Movie mov2 = new Movie { Title = "Hobbit: Battle of the five armies", Director = "Peter Jackson", ReleaseYear = 2014, Price = 179, Url = "/Content/Image/hobbit.jpg" };
-            Movie mov3 = new Movie { Title = "The Wolf of Wall Street", Director = "Martin Scorcese", ReleaseYear = 2013, Price = 110, Url = "/Content/Image/wolf.jpg" };
-            Movie mov4 = new Movie { Title = "Pulp Fiction", Director = "Quentin Tarantino", ReleaseYear = 1994, Price = 49, Url = "/Content/Image/pulpfiction.jpg" };
+            Movie mov1 = new Movie { Title = "Interstellar", Director = "Christoper Nolan", ReleaseYear = 2014, Price = 180, Url = "/Content/Image/Interstellar_film_poster.jpg", Rating = 0 };
+            Movie mov2 = new Movie { Title = "Hobbit: Battle of the five armies", Director = "Peter Jackson", ReleaseYear = 2014, Price = 179, Url = "/Content/Image/hobbit.jpg", Rating = 0 };
+            Movie mov3 = new Movie { Title = "The Wolf of Wall Street", Director = "Martin Scorcese", ReleaseYear = 2013, Price = 110, Url = "/Content/Image/wolf.jpg", Rating = 0 };
+            Movie mov4 = new Movie { Title = "Pulp Fiction", Director = "Quentin Tarantino", ReleaseYear = 1994, Price = 49, Url = "/Content/Image/pulpfiction.jpg", Rating = 0 };
 
             context.Movies.AddOrUpdate(m => m.Id, mov1, mov2, mov3, mov4);
 

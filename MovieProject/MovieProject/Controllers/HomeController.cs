@@ -151,7 +151,7 @@ namespace MovieProject.Controllers
                         {
                             file.SaveAs(path);
                             movie.Url = "/Content/Image/" + filename;
-
+                            movie.Rating = 0;
                             db.Movies.Add(movie);
                             db.SaveChanges();
 
@@ -274,6 +274,31 @@ namespace MovieProject.Controllers
         public ActionResult MovieInfo(int? Id)
         {
             return View(db.Movies.Find(Id));
+        }
+
+        [HttpPost]
+        public ActionResult MovieInfo(int Id, string review)
+        {
+            User user = (User)Session["User"];
+
+            if (user != null)
+            {
+                Review rev = new Review();
+
+                rev.Content = review;
+                rev.MovieId = Id;
+                rev.CustomerId = user.Customer.Id;
+
+                db.Reviews.Add(rev);
+                db.SaveChanges();
+
+                return RedirectToAction("MovieInfo", Id);
+            }
+            else
+            {
+                TempData["Message"] = "Not Logged in";
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -168,6 +168,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MovieScripts\Site.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -194,6 +195,10 @@
     <Compile Include="Migrations\201801041207438_Review.cs" />
     <Compile Include="Migrations\201801041207438_Review.Designer.cs">
       <DependentUpon>201801041207438_Review.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801041437095_ReviewUpdate.cs" />
+    <Compile Include="Migrations\201801041437095_ReviewUpdate.Designer.cs">
+      <DependentUpon>201801041437095_ReviewUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CheckOutVM.cs" />
@@ -258,6 +263,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801041207438_Review.resx">
       <DependentUpon>201801041207438_Review.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801041437095_ReviewUpdate.resx">
+      <DependentUpon>201801041437095_ReviewUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

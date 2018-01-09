@@ -16,7 +16,7 @@ namespace MovieProject.Models
         public int CustomerId { get; set; }
         [Required]
         public string Content { get; set; }
-        [Required]
+        
         public int Rating { get; set; }
 
         public virtual Movie Movie { get; set; }
