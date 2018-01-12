@@ -15,7 +15,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Rating)
+                @Html.DisplayFor(model => model.Rating)/10
             </dd>
 
             <dt>
@@ -59,18 +59,47 @@
     <div class="col-2">
         <a href="@Url.Action("AddToCart", "Cart", new {id = Model.Id})" class="btn btn-primary" style="align-content: center">Add To Cart</a>
     </div>
-    <div class="col">
-        <a href="#" id="reviewButton" class="btn btn-primary" style="align-content: center">Write a Review</a>
 
-    </div>
+    @if (Session["User"] != null)
+    {
+        <div class="col-2">
+            <a href="#" id="reviewButton" class="btn btn-primary" style="align-content: center">Write a Review</a>
+
+        </div>
+        using (Html.BeginForm("UpdateRating", "Home"))
+        {
+            @Html.Hidden("id", Model.Id)
+            <div class="col-1, row">
+                <h4>Rating: </h4>
+                <select id="rating" onchange="@Html.Hidden("rating")">
+                    <option value="0">--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <input type="submit" value="Submit" />
+            </div>
+        }
+    }
+    else
+    {
+        <p>Login to rate and review the movie</p>
+    }
 </div>
 
 <br />
 
 <div id="hiddenReview" style="display:none">
-    @using (Html.BeginForm("MovieInfo"))
+    @using (Html.BeginForm("PostReview", "Home"))
     {
-        @Html.Hidden("Id", Model.Id);
+        @Html.Hidden("id", Model.Id);
 
         @Html.TextArea("review", new { style="width: 600px; height: 200px;" })
 
@@ -84,7 +113,7 @@
 
 @foreach (var item in Model.Reviews)
 {
-    <div style="background-color: lightgrey;>
+    <div style="background-color: lightgrey;">
         <p>@Html.DisplayFor(x => item.Customer.User.Username)</p>
     </div>
     <div style="background-color: lightskyblue;">

@@ -271,13 +271,13 @@ namespace MovieProject.Controllers
             return RedirectToAction("OverView","Home",movies.ToList());
         }
 
-        public ActionResult MovieInfo(int? Id)
+        public ActionResult MovieInfo(int? id)
         {
-            return View(db.Movies.Find(Id));
+            return View(db.Movies.Find(id));
         }
 
         [HttpPost]
-        public ActionResult MovieInfo(int Id, string review)
+        public ActionResult PostReview(int id, string review)
         {
             User user = (User)Session["User"];
 
@@ -286,19 +286,42 @@ namespace MovieProject.Controllers
                 Review rev = new Review();
 
                 rev.Content = review;
-                rev.MovieId = Id;
+                rev.MovieId = id;
                 rev.CustomerId = user.Customer.Id;
 
                 db.Reviews.Add(rev);
                 db.SaveChanges();
 
-                return RedirectToAction("MovieInfo", Id);
+                return RedirectToAction("MovieInfo", db.Movies.Find(id));
             }
             else
             {
                 TempData["Message"] = "Not Logged in";
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateRating(int rating, int id)
+        {
+            var user = (User)Session["User"];
+
+            
+            if (user.Customer.Reviews.Any(r => r.MovieId == id))
+            {
+                db.Customers.Find(user.CustomerId).Reviews.Where(r => r.MovieId == id).Single().Rating = rating;
+            }
+            else
+            {
+                Review tempReview = new Review();
+                tempReview.Rating = rating;
+                tempReview.MovieId = id;
+                tempReview.CustomerId = user.CustomerId;
+                db.Reviews.Add(tempReview);
+            }
+            db.Movies.Find(id).UpdateRating();
+            db.SaveChanges();
+            return RedirectToAction("MovieInfo", db.Movies.Find(id));
         }
 
         protected override void Dispose(bool disposing)
