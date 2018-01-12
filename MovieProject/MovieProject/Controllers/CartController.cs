@@ -133,6 +133,8 @@ namespace MovieProject.Controllers
 
             }
 
+            TempData["OldAction"] = "CheckOut";
+
             return RedirectToAction("Login", "Account");
         }
 

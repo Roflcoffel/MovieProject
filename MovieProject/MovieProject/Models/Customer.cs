@@ -17,7 +17,7 @@ namespace MovieProject.Models
         [Required]
         public string LastName { get; set; }
         [StringLength(100)]
-        [Required]
+        [Required(ErrorMessage = "Address is required")]
         public string BillingAddress { get; set; }
         [StringLength(100)]
         [Required]
