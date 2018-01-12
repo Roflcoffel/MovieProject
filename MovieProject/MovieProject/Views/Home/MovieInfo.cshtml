@@ -113,11 +113,14 @@
 
 @foreach (var item in Model.Reviews)
 {
-    <div style="background-color: lightgrey;">
-        <p>@Html.DisplayFor(x => item.Customer.User.Username)</p>
-    </div>
-    <div style="background-color: lightskyblue;">
-        <p>@Html.DisplayFor(x => item.Content)</p>
-    </div>
-    
+    if (item.Content != null)
+    {
+        <div style="background-color: lightgrey;">
+            <p style="margin-bottom: 0px;">@Html.DisplayFor(x => item.Customer.User.Username)</p>
+        </div>
+        <div style="background-color: bisque;">
+            <p>@Html.DisplayFor(x => item.Content)</p>
+        </div>
+        <hr />
+    }
 }

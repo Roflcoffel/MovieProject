@@ -283,13 +283,18 @@ namespace MovieProject.Controllers
 
             if (user != null)
             {
-                Review rev = new Review();
-
-                rev.Content = review;
-                rev.MovieId = id;
-                rev.CustomerId = user.Customer.Id;
-
-                db.Reviews.Add(rev);
+                if (user.Customer.Reviews.Any(r => r.MovieId == id))
+                {
+                    db.Customers.Find(user.CustomerId).Reviews.Where(r => r.MovieId == id).Single().Content = review;
+                }
+                else
+                {
+                    Review rev = new Review();
+                    rev.Content = review;
+                    rev.MovieId = id;
+                    rev.CustomerId = user.Customer.Id;
+                    db.Reviews.Add(rev);
+                }
                 db.SaveChanges();
 
                 return RedirectToAction("MovieInfo", db.Movies.Find(id));
