@@ -179,7 +179,10 @@ namespace MovieProject.Controllers
             {
                 if (user != null)
                 {
+
+                    //Username must be unique for this to work.
                     var dbUser = db.Users.Where(u => u.Username == user.Username).FirstOrDefault();
+
                     //Get the Encrypted Password
                     string encodedPassword = Encrypt.EncodePassword(user.Password, dbUser.HashCode);
 
@@ -193,13 +196,16 @@ namespace MovieProject.Controllers
                         db.SaveChanges();
                         Session["User"] = dbUser;
 
-                        if(TempData["OldAction"].ToString() == "CheckOut")
+                        if(TempData["OldAction"] != null)
                         {
-                            
-                            TempData["OldAction"] = "";
-                            return RedirectToAction("CheckOut", "Cart");
-                        }
+                            if (TempData["OldAction"].ToString() == "CheckOut")
+                            {
 
+                                TempData["OldAction"] = "";
+                                return RedirectToAction("CheckOut", "Cart");
+                            }
+                        }
+                       
                         return RedirectToAction("Index", "Home");
                     }
 
